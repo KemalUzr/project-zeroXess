@@ -15,8 +15,18 @@ public class homescreenController {
         Scene showLoginScene = new Scene(showLogin);
 
         //pakt stage informatie
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(showLoginScene);
+        window.show();
+    }
+
+    public void naProfiel(ActionEvent event) throws IOException {
+        Parent showProfiel = FXMLLoader.load(getClass().getResource("Profiel.fxml"));
+        Scene showProfielScene = new Scene(showProfiel);
+
+        //pakt stage informatie
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(showProfielScene);
         window.show();
     }
 }
