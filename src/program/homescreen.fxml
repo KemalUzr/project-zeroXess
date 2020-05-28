@@ -18,7 +18,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Profiel">
+            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Profiel" onAction="#naProfiel">
                <font>
                   <Font size="18.0" />
                </font>
