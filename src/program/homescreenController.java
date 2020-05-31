@@ -21,7 +21,7 @@ public class homescreenController {
     }
 
     public void toAdress(ActionEvent event) throws IOException{
-        Parent toadress = FXMLLoader.load(getClass().getResource("addressCell.fxml"));
+        Parent toadress = FXMLLoader.load(getClass().getResource("adressScherm.fxml"));
         Scene adressScene = new Scene(toadress);
 
         //pakt stage informatie
