@@ -23,7 +23,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Addressbook" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#toAdress" prefHeight="100.0" prefWidth="255.0" text="Addressbook" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>

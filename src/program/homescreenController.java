@@ -15,7 +15,7 @@ public class homescreenController {
         Scene showLoginScene = new Scene(showLogin);
 
         //pakt stage informatie
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(showLoginScene);
         window.show();
     }
@@ -49,4 +49,18 @@ public class homescreenController {
         window.setScene(showHomeScene);
         window.show();
     }
+
+    public void toAdress(ActionEvent event) throws IOException{
+        Parent toadress = FXMLLoader.load(getClass().getResource("adressScherm.fxml"));
+        Scene adressScene = new Scene(toadress);
+
+        //pakt stage informatie
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(adressScene);
+        window.show();
+
+    }
+
+
+
 }
