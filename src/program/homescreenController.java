@@ -61,6 +61,18 @@ public class homescreenController {
 
     }
 
+    public void toEducative(ActionEvent event) throws IOException{
+        Parent toEducative = FXMLLoader.load(getClass().getResource("educativeHome.fxml"));
+        Scene EducativeScene = new Scene(toEducative);
+
+        //pakt stage informatie
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(EducativeScene);
+        window.show();
+
+    }
+
+
 
 
 }
