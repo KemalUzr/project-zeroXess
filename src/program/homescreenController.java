@@ -29,4 +29,14 @@ public class homescreenController {
         window.setScene(showProfielScene);
         window.show();
     }
+
+    public void livestock(ActionEvent event) throws IOException {
+        Parent showLivestock = FXMLLoader.load(getClass().getResource("Livestock.fxml"));
+        Scene showLivestockScene = new Scene(showLivestock);
+
+        //pakt stage informatie
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(showLivestockScene);
+        window.show();
+    }
 }
