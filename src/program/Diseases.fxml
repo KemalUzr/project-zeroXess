@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.ExchangeController">
+   <children>
+      <TableView layoutX="20.0" layoutY="18.0" prefHeight="488.0" prefWidth="760.0" AnchorPane.bottomAnchor="94.0" AnchorPane.rightAnchor="20.0">
+        <columns>
+          <TableColumn prefWidth="759.0" text="Disease:" />
+        </columns>
+      </TableView>
+      <TextField layoutX="22.0" layoutY="526.0" prefHeight="27.0" prefWidth="639.0" AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="139.0" />
+      <Button layoutX="674.0" layoutY="526.0" mnemonicParsing="false" text="Save" AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="80.5" />
+      <Button layoutX="729.0" layoutY="526.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="61.0" text="Delete" AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="10.0" />
+      <Label layoutX="22.0" layoutY="506.0" text="Write your disease here:" AnchorPane.bottomAnchor="77.0" AnchorPane.rightAnchor="647.0" />
+      <Button layoutX="734.0" layoutY="559.0" mnemonicParsing="false" onAction="#naHome" text="Home" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.5" />
+   </children>
+</AnchorPane>
