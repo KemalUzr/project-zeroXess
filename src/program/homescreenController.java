@@ -29,4 +29,24 @@ public class homescreenController {
         window.setScene(showProfielScene);
         window.show();
     }
+
+    public void naMedisch(ActionEvent event) throws IOException {
+        Parent showBeschikbaarheden = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
+        Scene showBeschikbaarhedenScene = new Scene(showBeschikbaarheden);
+
+        //pakt stage informatie
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(showBeschikbaarhedenScene);
+        window.show();
+    }
+
+    public void naExchange(ActionEvent event) throws IOException {
+        Parent showHome = FXMLLoader.load(getClass().getResource("Exchange.fxml"));
+        Scene showHomeScene = new Scene(showHome);
+
+        //pakt stage informatie
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(showHomeScene);
+        window.show();
+    }
 }
