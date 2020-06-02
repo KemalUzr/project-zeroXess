@@ -39,4 +39,14 @@ public class homescreenController {
         window.setScene(showBeschikbaarhedenScene);
         window.show();
     }
+
+    public void naExchange(ActionEvent event) throws IOException {
+        Parent showHome = FXMLLoader.load(getClass().getResource("Exchange.fxml"));
+        Scene showHomeScene = new Scene(showHome);
+
+        //pakt stage informatie
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(showHomeScene);
+        window.show();
+    }
 }

@@ -33,7 +33,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button cancelButton="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Livestock exchange" GridPane.columnIndex="1">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#naExchange" prefHeight="100.0" prefWidth="255.0" text="Livestock exchange" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
