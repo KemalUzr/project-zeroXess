@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.homescreenController">
    <children>
       </children>
-      <GridPane layoutX="122.0" layoutY="83.0" prefHeight="427.0" prefWidth="633.0">
+      <GridPane layoutX="122.0" layoutY="20.0" prefHeight="427.0" prefWidth="633.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,12 +18,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Profiel" onAction="#naProfiel">
+            <Button mnemonicParsing="false" onAction="#naProfiel" prefHeight="100.0" prefWidth="255.0" text="Profiel">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Addressbook" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#toAdress" prefHeight="100.0" prefWidth="255.0" text="Addressbook" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -33,22 +33,22 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button cancelButton="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Livestock exchange" GridPane.columnIndex="1">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#naExchange" prefHeight="100.0" prefWidth="255.0" text="Livestock exchange" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Medical" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#naMedisch" prefHeight="100.0" prefWidth="255.0" text="Medical" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Education" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#toEducative" prefHeight="100.0" prefWidth="255.0" text="Education" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
          </children>
       </GridPane>
-   <Button layoutX="718.0" layoutY="552.0" mnemonicParsing="false" onAction="#terugLogin" text="Logout" />
+   <Button layoutX="718.0" layoutY="399.0" mnemonicParsing="false" onAction="#terugLogin" text="Logout" />
    </AnchorPane>
