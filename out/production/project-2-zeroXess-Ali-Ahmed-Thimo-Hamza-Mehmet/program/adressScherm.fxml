@@ -6,14 +6,14 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.AdressController">
     <children>
-        <VBox prefHeight="400.0" prefWidth="600.0">
+        <VBox prefHeight="600.0" prefWidth="800.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#toHomescreen" text="terug" />
-                <TableView fx:id="tableView" prefHeight="221.0" prefWidth="458.0">
+                <TableView fx:id="tableView" prefHeight="437.0" prefWidth="800.0">
                     <columns>
-                        <TableColumn fx:id="nameColumn" onEditCommit="#changeName" prefWidth="154.0" text="Name" />
-                        <TableColumn fx:id="emailColumn" onEditCommit="#changeName" prefWidth="147.0" text="Email" />
-                        <TableColumn fx:id="telColumn" prefWidth="156.0" text="tel" />
+                        <TableColumn fx:id="nameColumn" onEditCommit="#changeName" prefWidth="204.0" text="Name" />
+                        <TableColumn fx:id="emailColumn" onEditCommit="#changeName" prefWidth="314.0" text="Email" />
+                        <TableColumn fx:id="telColumn" prefWidth="281.0" text="tel" />
                     </columns>
                 </TableView>
                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">

@@ -61,8 +61,6 @@ public class AdressController implements Initializable{
         window.setScene(homeScene);
         window.show();
     }
-
-
     // zorgt er voor dat je de naam kan veranderen
     public void changeName(TableColumn.CellEditEvent editCell){
         Adress adressSelected = tableView.getSelectionModel().getSelectedItem();

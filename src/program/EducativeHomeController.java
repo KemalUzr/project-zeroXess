@@ -21,4 +21,13 @@ public class EducativeHomeController {
         window.setScene(homeScene);
         window.show();
     }
+    public void toRekenen(ActionEvent event) throws IOException {
+        Parent toRek  = FXMLLoader.load(getClass().getResource("RekenenHome.fxml"));
+        Scene RekHomeScene = new Scene(toRek);
+
+        //pakt stage informatie
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(RekHomeScene);
+        window.show();
+    }
 }
