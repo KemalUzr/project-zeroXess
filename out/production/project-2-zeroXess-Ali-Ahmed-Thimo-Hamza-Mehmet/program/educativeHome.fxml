@@ -8,6 +8,6 @@
       <Button layoutX="40.0" layoutY="33.0" mnemonicParsing="false" onAction="#toHomescreen" text="terug" />
       <Button layoutX="66.0" layoutY="141.0" mnemonicParsing="false"   prefHeight="74.0" prefWidth="138.0" text="Rekenen" />
       <Button layoutX="231.0" layoutY="137.0" mnemonicParsing="false" onAction="#toSchrijven" prefHeight="82.0" prefWidth="138.0" text="Schrijven" />
-      <Button layoutX="395.0" layoutY="137.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="138.0" text="Lezen" onAction="#naLezen" />
+      <Button layoutX="395.0" layoutY="137.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="138.0" text="Lezen" />
    </children>
 </AnchorPane>

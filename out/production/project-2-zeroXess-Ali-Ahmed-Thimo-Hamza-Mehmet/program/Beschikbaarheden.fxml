@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.BeschikbaarhedenController">
    <children>
-      <VBox layoutX="114.0" layoutY="186.0" prefHeight="220.0" prefWidth="168.0" spacing="14.0" style="-fx-alignment: ffffff;" AnchorPane.leftAnchor="114.0">
+      <VBox layoutX="114.0" layoutY="186.0" prefHeight="220.0" prefWidth="168.0" spacing="14.0" style="-fx-alignment: ffffff;">
          <children>
             <Label text="Monday:             08:00 - 15:00" />
             <Label text="Tuesday:            08:00 - 15:00" />
@@ -17,7 +17,7 @@
             <Label text="Sunday:             NA" />
          </children>
       </VBox>
-      <VBox layoutX="114.0" layoutY="95.0" prefHeight="77.0" prefWidth="168.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="518.0">
+      <VBox layoutX="114.0" layoutY="95.0" prefHeight="77.0" prefWidth="168.0">
          <children>
             <Label text="Dr. Piet de Slang">
                <font>
@@ -31,7 +31,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="481.0" layoutY="186.0" prefHeight="220.0" prefWidth="168.0" spacing="14.0" style="-fx-alignment: ffffff;" AnchorPane.rightAnchor="151.0">
+      <VBox layoutX="481.0" layoutY="182.0" prefHeight="220.0" prefWidth="168.0" spacing="14.0" style="-fx-alignment: ffffff;">
          <children>
             <Label text="Monday:             08:00 - 16:00" />
             <Label text="Tuesday:            08:00 - 16:00" />
@@ -42,7 +42,7 @@
             <Label text="Sunday:             NA" />
          </children>
       </VBox>
-      <VBox layoutX="481.0" layoutY="91.0" prefHeight="77.0" prefWidth="168.0" AnchorPane.rightAnchor="151.0">
+      <VBox layoutX="481.0" layoutY="91.0" prefHeight="77.0" prefWidth="168.0">
          <children>
             <Label text="Dr. Kees de Boer">
                <font>
@@ -56,8 +56,8 @@
             </Label>
          </children>
       </VBox>
-      <Button layoutX="138.0" layoutY="486.0" mnemonicParsing="false" onAction="#naDiseases" prefHeight="47.0" prefWidth="216.0" text="Show my diseases  |  add diseases" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="114.0" />
-      <Button layoutX="369.0" layoutY="486.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="278.0" text="Show my appointments  |  make appointments" AnchorPane.bottomAnchor="67.0" AnchorPane.rightAnchor="44.0" />
-      <Button layoutX="707.5" layoutY="560.0" mnemonicParsing="false" onAction="#naHome" text="Home" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="41.0" />
+      <Button layoutX="138.0" layoutY="486.0" mnemonicParsing="false" onAction="#naDiseases" prefHeight="47.0" prefWidth="216.0" text="Show my diseases  |  add diseases" />
+      <Button layoutX="369.0" layoutY="486.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="278.0" text="Show my appointments  |  make appointments" />
+      <Button layoutX="719.0" layoutY="544.0" mnemonicParsing="false" onAction="#naHome" text="Home" />
    </children>
 </AnchorPane>

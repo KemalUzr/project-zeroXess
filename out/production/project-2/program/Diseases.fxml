@@ -10,7 +10,7 @@
           <TableColumn fx:id="Disease" prefWidth="759.0" text="Disease" />
         </columns>
       </TableView>
-      <TextField fx:id="DiseaseName" layoutX="22.0" layoutY="529.0" prefHeight="27.0" prefWidth="639.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="139.0" />
+      <TextField fx:id="DiseaseName" layoutX="22.0" layoutY="529.0" prefHeight="27.0" prefWidth="639.0" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="139.0" />
       <Button layoutX="671.5" layoutY="528.0" mnemonicParsing="false" onAction="#addButtton" text="Add" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="87.5" />
       <Button layoutX="722.0" layoutY="528.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="17.0" prefWidth="61.0" text="Delete" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="17.0" />
       <Label layoutX="22.0" layoutY="509.0" text="Write your disease here:" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="22.0" />
