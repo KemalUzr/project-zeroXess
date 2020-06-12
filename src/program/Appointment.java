@@ -3,13 +3,13 @@ package program;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Appointment {
-    private SimpleStringProperty doctor , date , time , disease;
+    private SimpleStringProperty doctor , day , time , specialization;
 
-    public Appointment(Doctor doctor, String date, int time, String disease){
+    public Appointment(Doctor doctor, String day, int time, Specialization specialization){
         this.doctor = new SimpleStringProperty(doctor.getDoctorName());
-        this.date = new SimpleStringProperty(date);
+        this.day = new SimpleStringProperty(day);
         this.time = new SimpleStringProperty(String.valueOf(time));
-        this.disease = new SimpleStringProperty();
+        this.specialization = new SimpleStringProperty(specialization.getName());
     }
 
     public String getDoctor() {
@@ -24,16 +24,16 @@ public class Appointment {
         this.doctor.set(doctor);
     }
 
-    public String getDate() {
-        return date.get();
+    public String getDay() {
+        return day.get();
     }
 
-    public SimpleStringProperty dateProperty(){
-        return date;
+    public SimpleStringProperty dayProperty(){
+        return day;
     }
 
-    public void setDate(String date) {
-        this.date.set(date);
+    public void setDate(String day) {
+        this.day.set(day);
     }
 
     public String getTime() {
@@ -47,15 +47,16 @@ public class Appointment {
     public void setTime(String time) {
         this.time.set(time);
     }
-    public String getDisease() {
-        return disease.get();
+
+    public String getSpecialization() {
+        return specialization.get();
     }
 
-    public SimpleStringProperty patientProperty(){
-        return disease;
+    public SimpleStringProperty specializationProperty(){
+        return specialization;
     }
 
-    public void setDisease(String disease) {
-        this.disease.set(disease);
+    public void setSpecialization(String specialization) {
+        this.specialization.set(specialization);
     }
 }

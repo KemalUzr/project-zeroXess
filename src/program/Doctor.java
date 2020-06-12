@@ -8,14 +8,14 @@ public class Doctor {
     private String name;
     private ArrayList<String> workingDays;
     private ArrayList<Integer> workingTimes;
-    private ArrayList<String> diseases;
+    private ArrayList<Specialization> spezializations;
 
 
-    public Doctor(String name, ArrayList<String> workingDays, ArrayList<Integer> workingTimes, ArrayList<String> diseases){
+    public Doctor(String name, ArrayList<String> workingDays, ArrayList<Integer> workingTimes, ArrayList<Specialization> specializations){
         this.name = name;
         this.workingDays = workingDays;
         this.workingTimes = workingTimes;
-        this.diseases = diseases;
+        this.spezializations = specializations;
     }
 
     public String getDoctorName() {
@@ -30,7 +30,7 @@ public class Doctor {
         return workingTimes;
     }
 
-    public ArrayList<String> getDiseases(){
-        return diseases;
+    public ArrayList<Specialization> getSpecialization(){
+        return spezializations;
     }
 }

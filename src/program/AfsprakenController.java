@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -25,29 +22,33 @@ import java.util.ResourceBundle;
 public class AfsprakenController implements Initializable{
     @FXML private TableView<Appointment> tableView;
     @FXML private TableColumn<Appointment , String> doctorColumn;
-    @FXML private TableColumn<Appointment , String> dateColumn;
+    @FXML private TableColumn<Appointment , String> dayColumn;
     @FXML private TableColumn<Appointment , String> timeColumn;
-    @FXML private TableColumn<Appointment , String> diseaseColumn;
+    @FXML private TableColumn<Appointment , String> specializationColumn;
 
-    @FXML private ChoiceBox<Doctor> doctorSelection;
+    @FXML private ChoiceBox<String> doctorSelection;
     @FXML private ChoiceBox<String> daySelection;
     @FXML private ChoiceBox<Integer> timeSelection;
-    @FXML private TextField diseaseTextField;
+    @FXML private ChoiceBox<String> specializationSelection;
+
+    @FXML private Label wrongDoctorAlert;
 
     private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
+    private ObservableList<Specialization> specializations = FXCollections.observableArrayList();
 
     public void initialize (URL url, ResourceBundle resourceBundle) {
         doctorColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("doctor"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("date"));
+        dayColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("day"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("time"));
-        diseaseColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("disease"));
+        specializationColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("specialization"));
 
         tableView.setItems(getData());
 
         getDoctor();
+        getSpecialization();
 
         tableView.setEditable(true);
-        dateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        dayColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         timeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
     }
@@ -67,9 +68,49 @@ public class AfsprakenController implements Initializable{
         appointmentSelected.setDoctor(editCell.getNewValue().toString());
     }
 
+    public void changeSpecialization(TableColumn.CellEditEvent editCell){
+        Appointment appointmentSelected = tableView.getSelectionModel().getSelectedItem();
+        appointmentSelected.setSpecialization(editCell.getNewValue().toString());
+    }
+
     public void addButtonClicked(){
-        Appointment appointment = new Appointment(doctorSelection.getValue(), daySelection.getValue(), timeSelection.getValue(), diseaseTextField.getText());
-        tableView.getItems().add(appointment);
+        wrongDoctorAlert.setText("");
+        if(checkDoctorSpecialization()) {
+            Appointment appointment = new Appointment(doctors.get(getRightDoctor()), daySelection.getValue(), timeSelection.getValue(), specializations.get(getRightSpecialization()));
+            tableView.getItems().add(appointment);
+
+        } else {
+            wrongDoctorAlert.setText("This doctor doesn't have this specialization.");
+        }
+    }
+
+    public boolean checkDoctorSpecialization(){
+        int count = 0;
+        while(doctors.get(getRightDoctor()).getSpecialization().size() > count){
+            if(doctors.get(getRightDoctor()).getSpecialization().get(count).getName().equals(specializations.get(getRightSpecialization()).getName())){
+                return true;
+            }
+            count ++;
+        }
+        return false;
+    }
+
+    public int getRightDoctor() {
+        for (int i = 0; i < doctors.size(); i++) {
+            if (doctorSelection.getValue().contains(doctors.get(i).getDoctorName())) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public int getRightSpecialization(){
+        for (int i = 0; i < specializations.size(); i++) {
+            if (specializationSelection.getValue().contains(specializations.get(i).getName())) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     public void deleteButtonClicked(){
@@ -81,7 +122,7 @@ public class AfsprakenController implements Initializable{
 
     public ObservableList<Appointment> getData(){
         ObservableList<Appointment> data = FXCollections.observableArrayList();
-        data.add(new Appointment(new Doctor("shon", firstDoctorWorkingDays(), firstDoctorWorkingTimes(), firstDoctorDiseases()), "shon@shon",10, "eyes" ));
+        data.add(new Appointment(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimes(), secondDoctorSpecializations()), "Monday",10, new General() ));
         return data;
     }
 
@@ -93,23 +134,36 @@ public class AfsprakenController implements Initializable{
     }
 
     public void getDoctor(){
-        doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimes(), firstDoctorDiseases()));
-        doctors.add(new Doctor("Dr. Kees de Beer", firstDoctorWorkingDays(), secondDoctorWorkingTimes(), secondDoctorDiseases()));
-        doctorSelection.getItems().addAll(doctors);
+        doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimes(), firstDoctorSpecializations()));
+        doctors.add(new Doctor("Dr. Kees de Beer", firstDoctorWorkingDays(), secondDoctorWorkingTimes(), secondDoctorSpecializations()));
+        for (int i = 0; i < doctors.size(); i++) {
+            doctorSelection.getItems().add(doctors.get(i).getDoctorName());
+        }
+
+    }
+
+    public void getSpecialization(){
+        specializations.add(new Skin());
+        specializations.add(new General());
+        specializations.add(new Eyes());
+        specializations.add(new Ear());
+        for (int i = 0; i < specializations.size(); i++) {
+            specializationSelection.getItems().add(specializations.get(i).getName());
+        }
     }
 
     public void getTime(){
         ObservableList<Integer> availableTimes = FXCollections.observableArrayList();
-        for (int i = 0; i < doctorSelection.getValue().getWorkingTimes().size(); i++) {
-            availableTimes.add(doctorSelection.getValue().getWorkingTimes().get(i));
+        for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingTimes().size(); i++) {
+            availableTimes.add(doctors.get(getRightDoctor()).getWorkingTimes().get(i));
         }
         timeSelection.getItems().addAll(availableTimes);
     }
 
     public void getDay(){
         ObservableList<String> availableDays = FXCollections.observableArrayList();
-        for (int i = 0; i < doctorSelection.getValue().getWorkingDays().size(); i++) {
-            availableDays.add(doctorSelection.getValue().getWorkingDays().get(i));
+        for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingDays().size(); i++) {
+            availableDays.add(doctors.get(getRightDoctor()).getWorkingDays().get(i));
         }
         daySelection.getItems().addAll(availableDays);
     }
@@ -151,17 +205,17 @@ public class AfsprakenController implements Initializable{
         return sDWT;
     }
 
-    public ArrayList<String> firstDoctorDiseases(){
-        ArrayList<String> fDD = new ArrayList<>();
-        fDD.add("Ear");
-        fDD.add("Eyes");
-        return fDD;
+    public ArrayList<Specialization> firstDoctorSpecializations(){
+        ArrayList<Specialization> fDS = new ArrayList<>();
+        fDS.add(new Ear());
+        fDS.add(new Eyes());
+        return fDS;
     }
 
-    public ArrayList<String> secondDoctorDiseases(){
-        ArrayList<String> sDD = new ArrayList<>();
-        sDD.add("Skin");
-        sDD.add("General");
-        return sDD;
+    public ArrayList<Specialization> secondDoctorSpecializations(){
+        ArrayList<Specialization> sDS = new ArrayList<>();
+        sDS.add(new Skin());
+        sDS.add(new General());
+        return sDS;
     }
 }
