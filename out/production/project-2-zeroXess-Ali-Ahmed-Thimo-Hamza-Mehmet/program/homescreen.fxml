@@ -28,7 +28,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Livestock" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Livestock" onAction="#livestock"  GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
