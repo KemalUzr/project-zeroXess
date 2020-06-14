@@ -1,5 +1,7 @@
 package program;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,10 +44,10 @@ public class AfsprakenController implements Initializable{
         timeColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("time"));
         specializationColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("specialization"));
 
-        tableView.setItems(getData());
-
         getDoctor();
         getSpecialization();
+
+        tableView.setItems(getData());
 
         tableView.setEditable(true);
         dayColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -78,7 +80,8 @@ public class AfsprakenController implements Initializable{
         if(checkDoctorSpecialization()) {
             Appointment appointment = new Appointment(doctors.get(getRightDoctor()), daySelection.getValue(), timeSelection.getValue(), specializations.get(getRightSpecialization()));
             tableView.getItems().add(appointment);
-
+            doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).remove(timeSelection.getValue());
+            timeSelection.getItems().clear();
         } else {
             wrongDoctorAlert.setText("This doctor doesn't have this specialization.");
         }
@@ -118,28 +121,46 @@ public class AfsprakenController implements Initializable{
         allAppointments = tableView.getItems();
         appointmentSelected = tableView.getSelectionModel().getSelectedItems();
         appointmentSelected.forEach(allAppointments::remove);
+        doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), Integer.parseInt(appointmentSelected.get(1).getTime()));
     }
 
     public ObservableList<Appointment> getData(){
         ObservableList<Appointment> data = FXCollections.observableArrayList();
-        data.add(new Appointment(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimes(), secondDoctorSpecializations()), "Monday",10, new General() ));
+        data.add(new Appointment(doctors.get(0), doctors.get(0).getWorkingDays().get(2), doctors.get(0).getWorkingTimes(2).get(2), specializations.get(3)));
+        doctors.get(0).getWorkingTimes(2).remove(doctors.get(0).getWorkingTimes(2).get(2));
         return data;
     }
 
-    public void selectDoctorButton(){
-        timeSelection.getItems().clear();
-        daySelection.getItems().clear();
-        getDay();
-        getTime();
-    }
-
     public void getDoctor(){
-        doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimes(), firstDoctorSpecializations()));
-        doctors.add(new Doctor("Dr. Kees de Beer", firstDoctorWorkingDays(), secondDoctorWorkingTimes(), secondDoctorSpecializations()));
+        doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
+        doctors.add(new Doctor("Dr. Kees de Beer", firstDoctorWorkingDays(), secondDoctorWorkingTimesPerDay(), secondDoctorSpecializations()));
         for (int i = 0; i < doctors.size(); i++) {
             doctorSelection.getItems().add(doctors.get(i).getDoctorName());
         }
-
+        doctorSelection.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                        daySelection.getItems().clear();
+                        ObservableList<String> availableDays = FXCollections.observableArrayList();
+                        for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingDays().size(); i++) {
+                            availableDays.add(doctors.get(getRightDoctor()).getWorkingDays().get(i));
+                        }
+                        daySelection.getItems().addAll(availableDays);
+                        daySelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                            @Override
+                            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                                timeSelection.getItems().clear();
+                                ObservableList<Integer> availableTimes = FXCollections.observableArrayList();
+                                for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(); i++) {
+                                    availableTimes.add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).get(i));
+                                }
+                                timeSelection.getItems().addAll(availableTimes);
+                            }
+                        });
+                    }
+                });
     }
 
     public void getSpecialization(){
@@ -152,22 +173,6 @@ public class AfsprakenController implements Initializable{
         }
     }
 
-    public void getTime(){
-        ObservableList<Integer> availableTimes = FXCollections.observableArrayList();
-        for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingTimes().size(); i++) {
-            availableTimes.add(doctors.get(getRightDoctor()).getWorkingTimes().get(i));
-        }
-        timeSelection.getItems().addAll(availableTimes);
-    }
-
-    public void getDay(){
-        ObservableList<String> availableDays = FXCollections.observableArrayList();
-        for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingDays().size(); i++) {
-            availableDays.add(doctors.get(getRightDoctor()).getWorkingDays().get(i));
-        }
-        daySelection.getItems().addAll(availableDays);
-    }
-
     public ArrayList<String> firstDoctorWorkingDays(){
         ArrayList<String> fDWD = new ArrayList<>();
         fDWD.add("Monday");
@@ -176,6 +181,22 @@ public class AfsprakenController implements Initializable{
         fDWD.add("Thursday");
         fDWD.add("Friday");
         return fDWD;
+    }
+
+    public ArrayList<ArrayList<Integer>> firstDoctorWorkingTimesPerDay(){
+        ArrayList<ArrayList<Integer>> fDWTPD = new ArrayList<>();
+        for (int i = 0; i < firstDoctorWorkingDays().size(); i++) {
+            fDWTPD.add(firstDoctorWorkingTimes());
+        }
+        return fDWTPD;
+    }
+
+    public ArrayList<ArrayList<Integer>> secondDoctorWorkingTimesPerDay(){
+        ArrayList<ArrayList<Integer>> sDWTPD = new ArrayList<>();
+        for (int i = 0; i < firstDoctorWorkingDays().size(); i++) {
+            sDWTPD.add(secondDoctorWorkingTimes());
+        }
+        return sDWTPD;
     }
 
     public ArrayList<Integer> firstDoctorWorkingTimes(){
