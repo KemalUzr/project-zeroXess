@@ -27,11 +27,11 @@ public class LezenController {
     private Label Vraag3;
 
     @FXML
-    private RadioButton V1A1;
+    private RadioButton correctAnswer1;
     @FXML
-    private RadioButton V2A2;
+    private RadioButton correctAnswer2;
     @FXML
-    private RadioButton V3A3;
+    private RadioButton correctAnswer3;
 
     public void toHomescreen(ActionEvent event) throws IOException {
         Parent tohome  = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
@@ -43,19 +43,19 @@ public class LezenController {
         window.show();
     }
     public void submit(){
-        if(V1A1.isSelected() == true) {
+        if(correctAnswer1.isSelected() == true) {
             Vraag1.setText(Vraag1.getText() + "   Correct");
             points =points +4;
         }
         else
             Vraag1.setText(Vraag1.getText()+"   Fout");
-        if(V2A2.isSelected() == true){
+        if(correctAnswer2.isSelected() == true){
             Vraag2.setText(Vraag2.getText()+"   Correct");
             points =points +3;
         }
         else
             Vraag2.setText(Vraag2.getText()+"   Fout");
-        if(V3A3.isSelected() == true){
+        if(correctAnswer3.isSelected() == true){
             Vraag3.setText(Vraag3.getText()+"   Correct");
             points =points +3;
         }
