@@ -1,17 +1,19 @@
 package program;
 
 import javafx.beans.property.SimpleStringProperty;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Doctor {
     private String name;
     private ArrayList<String> workingDays;
-    private ArrayList<Integer> workingTimes;
+    private ArrayList<ArrayList<Integer>> workingTimes;
     private ArrayList<Specialization> spezializations;
 
 
-    public Doctor(String name, ArrayList<String> workingDays, ArrayList<Integer> workingTimes, ArrayList<Specialization> specializations){
+    public Doctor(String name, ArrayList<String> workingDays, ArrayList<ArrayList<Integer>> workingTimes, ArrayList<Specialization> specializations){
         this.name = name;
         this.workingDays = workingDays;
         this.workingTimes = workingTimes;
@@ -26,8 +28,8 @@ public class Doctor {
         return workingDays;
     }
 
-    public ArrayList<Integer> getWorkingTimes(){
-        return workingTimes;
+    public ArrayList<Integer> getWorkingTimes(int day){
+        return workingTimes.get(day);
     }
 
     public ArrayList<Specialization> getSpecialization(){
