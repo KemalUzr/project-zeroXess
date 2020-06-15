@@ -13,7 +13,7 @@ import static org.junit.Assert.fail;
 public class ProfielTest {
     @Test
     //Checkt of het inlog naam overeen komt met de profiel naam
-    public void test1() throws IOException {
+    public void profielTest() throws IOException {
         assertEquals("Jan", Files.readString(Paths.get("name.txt"), Charset.defaultCharset()));
     }
 }
