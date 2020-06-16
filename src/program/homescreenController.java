@@ -23,7 +23,8 @@ public class homescreenController {
     public void naProfiel(ActionEvent event) throws IOException {
         Parent showProfiel = FXMLLoader.load(getClass().getResource("Profiel.fxml"));
         Scene showProfielScene = new Scene(showProfiel);
-
+        Aves Chicken = new Aves("12", "222", "Chicken");
+        Aves Duck = new Aves("12", "222", "Duck");
         //pakt stage informatie
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(showProfielScene);
