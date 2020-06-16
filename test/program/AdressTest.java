@@ -16,7 +16,7 @@ public class AdressTest {
 
     //test getter setters van de adress class.
     @Test
-    void checkname() {
+    void checkName() {
         Adress adress = new Adress("shon", "shon@shon", "2132342323");
 
         adress.setName("Lewis");

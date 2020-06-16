@@ -9,10 +9,9 @@ public class InlogSchermControllerTest {
     //kijkt of de gebruikersnaam en wachtwoord correct zijn.
     @Test
     public void naLogin() {
-        String Gebruikersnaam = "Jan";
-        String Wachtwoord = "123";
+        InlogSchermController inlogSchermController = new InlogSchermController();
 
-        assertEquals("Jan", Gebruikersnaam);
-        assertEquals("123", Wachtwoord);
+        assertEquals("Jan", inlogSchermController.getGebruikersnaam());
+        assertEquals("123", inlogSchermController.getWachtwoord());
     }
 }

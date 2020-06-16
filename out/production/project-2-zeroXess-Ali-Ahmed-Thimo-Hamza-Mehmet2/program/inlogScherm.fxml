@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.InlogSchermController">
+    <children>
+        <ImageView fitHeight="197.0" fitWidth="233.0" layoutX="284.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="283.0">
+            <image>
+                <Image url="@../images/kumbayaLogo.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="191.0" layoutY="321.0" prefHeight="17.0" prefWidth="103.0" text="Username = Jan" AnchorPane.bottomAnchor="262.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="507.0" />
+        <Label layoutX="190.0" layoutY="362.0" prefHeight="17.0" prefWidth="104.0" text="Password = 123" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="507.0" />
+        <TextField fx:id="inlogUsername" layoutX="307.0" layoutY="316.0" prefHeight="27.0" prefWidth="295.0" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="198.0" />
+        <PasswordField fx:id="inlogPassword" layoutX="307.0" layoutY="357.0" prefHeight="27.0" prefWidth="295.0" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="198.0" />
+        <Label fx:id="wrongPasswordAlert" layoutX="238.0" layoutY="503.0" prefHeight="22.0" prefWidth="341.0">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <Pane layoutX="600.0" layoutY="386.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Button layoutX="105.0" layoutY="148.0" mnemonicParsing="false" onAction="#naLogin" text="Login">
+                    <font>
+                        <Font name="Helvetica Neue" size="17.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

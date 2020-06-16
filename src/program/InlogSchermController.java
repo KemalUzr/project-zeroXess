@@ -22,9 +22,10 @@ public class InlogSchermController {
     private TextField inlogPassword;
     public Label wrongPasswordAlert;
 
+    String Gebruikersnaam= "Jan";
+    String Wachtwoord = "123";
+
     public void naLogin(ActionEvent event) throws IOException{
-        String Gebruikersnaam= "Jan";
-        String Wachtwoord = "123";
 
         if((inlogUsername.getText().equals(Gebruikersnaam))&&(inlogPassword.getText().equals(Wachtwoord))) {
             Parent showMain = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
@@ -39,5 +40,12 @@ public class InlogSchermController {
         else{
             wrongPasswordAlert.setText("Wrong password or username, try again.");
         }
+    }
+    public String getGebruikersnaam() {
+        return Gebruikersnaam;
+    }
+
+    public String getWachtwoord() {
+        return Wachtwoord;
     }
 }

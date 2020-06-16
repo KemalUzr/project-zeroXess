@@ -55,9 +55,9 @@ public class AfsprakenController implements Initializable{
 
     }
 
-    public void naHome(ActionEvent event) throws IOException{
-        Parent showHome = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
-        Scene showHomeScene = new Scene(showHome);
+    public void terug(ActionEvent event) throws IOException {
+        Parent showTerug = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
+        Scene showHomeScene = new Scene(showTerug);
 
         //pakt stage informatie
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
