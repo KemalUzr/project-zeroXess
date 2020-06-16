@@ -23,12 +23,12 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Addressbook" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#toAdress" prefHeight="100.0" prefWidth="255.0" text="Addressbook" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Livestock" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Livestock" onAction="#livestock"  GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="255.0" text="Education" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#toEducative" prefHeight="100.0" prefWidth="255.0" text="Education" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>

@@ -28,4 +28,12 @@ public class BeschikbaarhedenController {
         window.setScene(showDiseasesScene);
         window.show();
     }
+    public void naAppointments(ActionEvent event) throws IOException {
+        Parent showAppointments = FXMLLoader.load(getClass().getResource("Appointment.fxml"));
+        Scene showAppointmentScene = new Scene(showAppointments);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(showAppointmentScene);
+        window.show();
+    }
 }
