@@ -1,6 +1,7 @@
 package program;
 
 import org.junit.jupiter.api.Test;
+import program.Mammal;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
