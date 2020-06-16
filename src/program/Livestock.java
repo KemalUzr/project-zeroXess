@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class Livestock {
+public class Livestock  {
     public Button loadStockButton;
     public Button saveStockButton;
 
@@ -30,6 +30,15 @@ public class Livestock {
     public TextField goatWeight;
     public TextField chickenWeight;
     public TextField duckWeight;
+
+    Mammal sheep = new Mammal(getValue("sheepAmount"), getValue("sheepWeight"), "Sheep");
+    Mammal cow = new Mammal(getValue("cowAmount"), getValue("cowWeight"), "Cow");
+    Mammal goat = new Mammal(getValue("goatAmount"), getValue("goatWeight"), "Goat");
+    Aves chicken = new Aves(getValue("chickenAmount"), getValue("chickenWeight"), "Chicken");
+    Aves duck = new Aves(getValue("duckAmount"), getValue("duckWeight"), "Duck");
+
+    public Livestock() throws IOException {
+    }
 
     public void naHome(ActionEvent event) throws IOException {
         Parent showHome = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
@@ -46,7 +55,16 @@ public class Livestock {
         loadStock();
     }
     public void saveStock(){
-
+        sheep.setAmount(sheepAmount.getText());
+        cow.setAmount(cowAmount.getText());
+        goat.setAmount(goatAmount.getText());
+        chicken.setAmount(chickenAmount.getText());
+        duck.setAmount(duckAmount.getText());
+        sheep.setAmount(sheepWeight.getText());
+        cow.setAmount(cowWeight.getText());
+        goat.setAmount(goatWeight.getText());
+        chicken.setAmount(chickenWeight.getText());
+        duck.setAmount(duckWeight.getText());
 
         try {
             BufferedWriter writercowA = new BufferedWriter(new FileWriter("cowAmount.txt"));
@@ -61,9 +79,9 @@ public class Livestock {
             writergoatA.write(goatAmount.getText());
             writergoatA.close();
 
-            BufferedWriter writerChickenA = new BufferedWriter(new FileWriter("chickenAmount.txt"));
-            writerChickenA.write(chickenAmount.getText());
-            writerChickenA.close();
+            BufferedWriter writerchickenA = new BufferedWriter(new FileWriter("chickenAmount.txt"));
+            writerchickenA.write(chickenAmount.getText());
+            writerchickenA.close();
 
             BufferedWriter writerduckA = new BufferedWriter(new FileWriter("duckAmount.txt"));
             writerduckA.write(duckAmount.getText());
@@ -94,36 +112,30 @@ public class Livestock {
         }
     }
     //Laad stock in via de .txt files
+    public String getValue(String specific) throws IOException {
+          String returnValue = Files.readString(Paths.get(specific +".txt"), Charset.defaultCharset());
+        return returnValue;
+    }
     public void loadStock() throws IOException {
-        String amountCow = Files.readString(Paths.get("cowAmount.txt"), Charset.defaultCharset());
-        String amountGoat = Files.readString(Paths.get("goatAmount.txt"), Charset.defaultCharset());
-        String amountSheep = Files.readString(Paths.get("sheepAmount.txt"), Charset.defaultCharset());
-        String amountChicken = Files.readString(Paths.get("chickenAmount.txt"), Charset.defaultCharset());
-        String amountDuck = Files.readString(Paths.get("duckAmount.txt"), Charset.defaultCharset());
-        String weightCow = Files.readString(Paths.get("cowWeight.txt"), Charset.defaultCharset());
-        String weightGoat = Files.readString(Paths.get("goatWeight.txt"), Charset.defaultCharset());
-        String weightSheep = Files.readString(Paths.get("sheepWeight.txt"), Charset.defaultCharset());
-        String weightChicken = Files.readString(Paths.get("chickenWeight.txt"), Charset.defaultCharset());
-        String weightDuck = Files.readString(Paths.get("duckWeight.txt"), Charset.defaultCharset());
 
-        cowAmount.setText(amountCow);
+        chickenAmount.setText(chicken.getAmount());
 
-        sheepAmount.setText(amountSheep);
+        cowAmount.setText(cow.getAmount());
 
-        goatAmount.setText(amountGoat);
+        sheepAmount.setText(sheep.getAmount());
 
-        chickenAmount.setText(amountChicken);
+        goatAmount.setText(goat.getAmount());
 
-        duckAmount.setText(amountDuck);
+        duckAmount.setText(duck.getAmount());
 
-        cowWeight.setText(weightCow);
+        cowWeight.setText(cow.getWeight());
 
-        sheepWeight.setText(weightSheep);
+        sheepWeight.setText(sheep.getWeight());
 
-        goatWeight.setText(weightGoat);
+        goatWeight.setText(goat.getWeight());
 
-        chickenWeight.setText(weightChicken);
+        chickenWeight.setText(chicken.getWeight());
 
-        duckWeight.setText(weightDuck);
+        duckWeight.setText(duck.getWeight());
     }
 }
