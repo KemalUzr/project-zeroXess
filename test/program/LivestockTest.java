@@ -19,6 +19,7 @@ class LivestockTest {
         String voorbeeldinvoerveld = "13";
         Mammal test = new Mammal("12", "33", "Dog");
         test.setAmount(voorbeeldinvoerveld);
+        assertEquals(test.getAmount(), voorbeeldinvoerveld);
         try {
             BufferedWriter writercowA = new BufferedWriter(new FileWriter("testAmount.txt"));
             writercowA.write(voorbeeldinvoerveld);
