@@ -1,15 +1,67 @@
 package program;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.*;
 
-public class homescreenController {
+public class homescreenController implements Initializable {
+    @FXML private TableView<Appointment> Tview;
+    @FXML private TableColumn<Appointment , String> Doctor;
+    @FXML private TableColumn<Appointment , String> Day;
+    @FXML private TableColumn<Appointment , String> Time;
+    @FXML private TableColumn<Appointment , String> Specialization;
+
+    private AfsprakenController afsprakenController = new AfsprakenController();
+
+    @Override
+    public void initialize (URL url, ResourceBundle resourceBundle) {
+        Doctor.setCellValueFactory(new PropertyValueFactory<Appointment, String>("doctor"));
+        Day.setCellValueFactory(new PropertyValueFactory<Appointment, String>("day"));
+        Time.setCellValueFactory(new PropertyValueFactory<Appointment, String>("time"));
+        Specialization.setCellValueFactory(new PropertyValueFactory<Appointment, String>("specialization"));
+
+        update();
+        Tview.setItems(Data.firstAppointments);
+    }
+
+    public void getData2(){
+        Data.allAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Ear()));
+        Data.firstAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Ear()));
+
+    }
+
+    public void update(){
+        for (int i = 0; i < Data.allAppointments.size(); i++) {
+            for (int j = 0; j < Data.firstAppointments.size(); j++) {
+                if(Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) < Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
+                    Data.firstAppointments.set(0, Data.allAppointments.get(i));
+                } else if (Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) == Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
+                    if (Data.allAppointments.get(i).getTimeAsInt(Data.allAppointments.get(i).getTime()) < Data.firstAppointments.get(j).getTimeAsInt(Data.firstAppointments.get(j).getTime())){
+                        Data.firstAppointments.set(0, Data.allAppointments.get(i));
+                    }
+                }
+            }
+        }
+    }
+
     public void terugLogin(ActionEvent event) throws IOException {
         Parent showLogin = FXMLLoader.load(getClass().getResource("inlogScherm.fxml"));
         Scene showLoginScene = new Scene(showLogin);
@@ -81,4 +133,5 @@ public class homescreenController {
         window.show();
 
     }
+
 }
