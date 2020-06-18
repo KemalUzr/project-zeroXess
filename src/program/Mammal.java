@@ -1,6 +1,8 @@
 package program;
 
-public class Mammal extends Animals {
+import program.Animal.Animal;
+
+public class Mammal extends Animal {
     public String name;
 
     public Mammal(String amount, String weight, String name) {

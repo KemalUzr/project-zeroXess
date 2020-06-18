@@ -1,10 +1,10 @@
-package program;
+package program.Animal;
 
-public class Animals {
+public class Animal {
     public String amount;
     public String weight;
 
-    public Animals(String amount, String weight) {
+    public Animal(String amount, String weight) {
         this.amount = amount;
         this.weight = weight;
     }
