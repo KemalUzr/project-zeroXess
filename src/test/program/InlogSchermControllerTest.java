@@ -1,7 +1,9 @@
-package program;
+package test.program;
 
 
 import org.junit.jupiter.api.Test;
+import program.InlogSchermController;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InlogSchermControllerTest {
