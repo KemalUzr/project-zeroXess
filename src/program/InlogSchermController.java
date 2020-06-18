@@ -15,18 +15,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class InlogSchermController {
+    // onderstaande 2 textfields is de tekst die in deze textfields krijgen van de gebruiker
     @FXML
     private TextField inlogUsername;
-
     @FXML
     private TextField inlogPassword;
     public Label wrongPasswordAlert;
 
     String Gebruikersnaam= "Jan";
     String Wachtwoord = "123";
+    boolean correctLogin = false;
 
     public boolean naLogin(ActionEvent event) throws IOException{
-
         if((inlogUsername.getText().equals(Gebruikersnaam))&&(inlogPassword.getText().equals(Wachtwoord))) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("homescreen.fxml"));
@@ -40,18 +40,18 @@ public class InlogSchermController {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(showMainScene);
             window.show();
-            return true;
+            return correctLogin = true;
         }
         else{
             wrongPasswordAlert.setText("Wrong password or username, try again.");
+            return correctLogin = false;
         }
-        return false;
     }
     public String getGebruikersnaam() {
         return Gebruikersnaam;
     }
-
     public String getWachtwoord() {
         return Wachtwoord;
     }
+    public boolean getCorrectLogin() {return correctLogin;}
 }
