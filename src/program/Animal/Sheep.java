@@ -1,16 +1,17 @@
 package program.Animal;
 
+import program.Mammal;
+
 import java.util.ArrayList;
 
-public class Sheep extends Animal {
+public class Sheep extends Mammal {
     public static Integer totalSheepAmount = 0;
     public ArrayList<Integer> allSheepWeight;
 
-
-    public Sheep(String amount, String weight, ArrayList<Integer> allChickenWeight) {
-        super(amount, weight);
+    public Sheep(String amount, String weight, String name, ArrayList<Integer> allSheepWeight) {
+        super(amount, weight, name);
+        this.allSheepWeight = allSheepWeight;
         this.totalSheepAmount ++;
-        this.allSheepWeight = allChickenWeight;
     }
 
     public Integer getTotalSheepAmount() {

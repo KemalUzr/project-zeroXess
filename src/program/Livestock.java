@@ -142,7 +142,7 @@ public class Livestock  {
         switch (addDropdown.getValue()) {
             case "sheep":
                 allSheepWeight.add(addInputInt);
-                Sheep sheep = new Sheep("1", addInputString, allSheepWeight);
+                Sheep sheep = new Sheep("1", addInputString, "sheep", allSheepWeight);
                 for (Integer test : sheep.getAllSheepWeight()) {
                     sheepTotal = sheepTotal + test;
                 }
@@ -153,7 +153,7 @@ public class Livestock  {
                 break;
             case "cow":
                 allCowWeight.add(addInputInt);
-                Cow cow = new Cow("1", addInputString, allCowWeight);
+                Cow cow = new Cow("1", addInputString, "cow", allCowWeight);
                 for (Integer test : cow.getAllCowWeight()) {
                     cowTotal = cowTotal + test;
                 }
@@ -164,7 +164,7 @@ public class Livestock  {
                 break;
             case "goat":
                 allGoatWeight.add(addInputInt);
-                Goat goat = new Goat("1", addInputString, allGoatWeight);
+                Goat goat = new Goat("1", addInputString,"goat", allGoatWeight);
                 for (Integer test : goat.getAllGoatWeight()) {
                     goatTotal = goatTotal + test;
                 }
@@ -175,7 +175,7 @@ public class Livestock  {
                 break;
             case "chicken":
                 allChickenWeight.add(addInputInt);
-                Chicken chicken = new Chicken("1", addInputString, allChickenWeight);
+                Chicken chicken = new Chicken("1", addInputString, "chicken", allChickenWeight);
                 for (Integer test : chicken.getAllChickenWeight()) {
                     chickenTotal = chickenTotal + test;
                 }
@@ -186,7 +186,7 @@ public class Livestock  {
                 break;
             case "duck":
                 allDuckWeight.add(addInputInt);
-                Duck duck = new Duck("1", addInputString, allDuckWeight);
+                Duck duck = new Duck("1", addInputString, "duck", allDuckWeight);
                 for (Integer test : duck.getAllDuckWeight()) {
                     duckTotal = duckTotal + test;
                 }
