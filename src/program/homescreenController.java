@@ -62,7 +62,6 @@ public class homescreenController implements Initializable {
         }
     }
 
-
     public void terugLogin(ActionEvent event) throws IOException {
         Parent showLogin = FXMLLoader.load(getClass().getResource("inlogScherm.fxml"));
         Scene showLoginScene = new Scene(showLogin);
