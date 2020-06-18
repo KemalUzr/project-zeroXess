@@ -39,4 +39,12 @@ public class EducativeHomeController {
         window.setScene(homeScene);
         window.show();
     }
+    public void ToReken(ActionEvent event) throws IOException{
+        Parent toReken = FXMLLoader.load(getClass().getResource("RekenenHome.fxml"));
+        Scene toRHOmeScene = new Scene(toReken);
+
+        Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(toRHOmeScene);
+        window.show();
+    }
 }

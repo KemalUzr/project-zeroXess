@@ -51,12 +51,4 @@
          </children>
       </GridPane>
    <Button layoutX="718.0" layoutY="399.0" mnemonicParsing="false" onAction="#terugLogin" text="Logout" />
-    <TableView fx:id="Tview" layoutX="20.0" layoutY="450.0" prefHeight="488.0" prefWidth="760.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="450.0">
-        <columns>
-            <TableColumn fx:id="Doctor" prefWidth="190.0" text="First Appointment" />
-            <TableColumn fx:id="Day" prefWidth="190.0" text="Day" />
-            <TableColumn fx:id="Time" prefWidth="190.0" text="Time" />
-            <TableColumn fx:id="Specialization" prefWidth="190.0" text="Specialization" />
-        </columns>
-    </TableView>
    </AnchorPane>
