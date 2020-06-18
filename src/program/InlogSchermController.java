@@ -25,7 +25,7 @@ public class InlogSchermController {
     String Gebruikersnaam= "Jan";
     String Wachtwoord = "123";
 
-    public void naLogin(ActionEvent event) throws IOException{
+    public boolean naLogin(ActionEvent event) throws IOException{
 
         if((inlogUsername.getText().equals(Gebruikersnaam))&&(inlogPassword.getText().equals(Wachtwoord))) {
             FXMLLoader loader = new FXMLLoader();
@@ -40,11 +40,12 @@ public class InlogSchermController {
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(showMainScene);
             window.show();
-
+            return true;
         }
         else{
             wrongPasswordAlert.setText("Wrong password or username, try again.");
         }
+        return false;
     }
     public String getGebruikersnaam() {
         return Gebruikersnaam;

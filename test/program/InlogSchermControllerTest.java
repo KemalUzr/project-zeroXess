@@ -14,4 +14,5 @@ public class InlogSchermControllerTest {
         assertEquals("Jan", inlogSchermController.getGebruikersnaam());
         assertEquals("123", inlogSchermController.getWachtwoord());
     }
+
 }
