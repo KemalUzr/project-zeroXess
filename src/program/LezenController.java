@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LezenController {
-    private int points = 0;
+    public int points = 0;
     @FXML
     private Button submitButton;
     @FXML
@@ -27,11 +27,11 @@ public class LezenController {
     private Label Vraag3;
 
     @FXML
-    private RadioButton correctAnswer1;
+    public RadioButton correctAnswer1;
     @FXML
-    private RadioButton correctAnswer2;
+    public RadioButton correctAnswer2;
     @FXML
-    private RadioButton correctAnswer3;
+    public RadioButton correctAnswer3;
 
     public void toHomescreen(ActionEvent event) throws IOException {
         Parent tohome  = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
