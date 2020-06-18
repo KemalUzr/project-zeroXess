@@ -1,13 +1,17 @@
 package program;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import program.Animal.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -15,6 +19,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Livestock  {
     public Button loadStockButton;
@@ -30,7 +35,19 @@ public class Livestock  {
     public TextField goatWeight;
     public TextField chickenWeight;
     public TextField duckWeight;
-
+    public TextField addInput;
+    @FXML
+    public ChoiceBox<String> addDropdown;
+    ArrayList<Integer> allChickenWeight = new ArrayList<>();
+    ArrayList<Integer> allCowWeight = new ArrayList<>();
+    ArrayList<Integer> allDuckWeight = new ArrayList<>();
+    ArrayList<Integer> allGoatWeight = new ArrayList<>();
+    ArrayList<Integer> allSheepWeight = new ArrayList<>();
+    int chickenTotal = 0;
+    int cowTotal = 0;
+    int duckTotal = 0;
+    int goatTotal = 0;
+    int sheepTotal = 0;
     Mammal sheep = new Mammal(getValue("sheepAmount"), getValue("sheepWeight"), "Sheep");
     Mammal cow = new Mammal(getValue("cowAmount"), getValue("cowWeight"), "Cow");
     Mammal goat = new Mammal(getValue("goatAmount"), getValue("goatWeight"), "Goat");
@@ -116,7 +133,92 @@ public class Livestock  {
           String returnValue = Files.readString(Paths.get(specific +".txt"), Charset.defaultCharset());
         return returnValue;
     }
+    public void addNewAnimal(){
+        System.out.println(addDropdown.getValue());
+        String addInputString = addInput.getText();
+        int addInputInt = Integer.parseInt(addInputString);
+
+        addInput.setText("");
+        switch (addDropdown.getValue()) {
+            case "sheep":
+                allSheepWeight.add(addInputInt);
+                Sheep sheep = new Sheep("1", addInputString, allSheepWeight);
+                for (Integer test : sheep.getAllSheepWeight()) {
+                    sheepTotal = sheepTotal + test;
+                }
+                saveNewData(sheepTotal, sheep.getTotalSheepAmount(), "sheep");
+                sheepWeight.setText(Integer.toString(sheepTotal));
+                sheepAmount.setText(Integer.toString(sheep.getTotalSheepAmount()));
+                sheepTotal = 0;
+                break;
+            case "cow":
+                allCowWeight.add(addInputInt);
+                Cow cow = new Cow("1", addInputString, allCowWeight);
+                for (Integer test : cow.getAllCowWeight()) {
+                    cowTotal = cowTotal + test;
+                }
+                saveNewData(cowTotal, cow.getTotalCowAmount(), "cow");
+                cowWeight.setText(Integer.toString(cowTotal));
+                cowAmount.setText(Integer.toString(cow.getTotalCowAmount()));
+                cowTotal = 0;
+                break;
+            case "goat":
+                allGoatWeight.add(addInputInt);
+                Goat goat = new Goat("1", addInputString, allGoatWeight);
+                for (Integer test : goat.getAllGoatWeight()) {
+                    goatTotal = goatTotal + test;
+                }
+                saveNewData(goatTotal, goat.getTotalGoatAmount(), "goat");
+                goatWeight.setText(Integer.toString(goatTotal));
+                goatAmount.setText(Integer.toString(goat.getTotalGoatAmount()));
+                goatTotal = 0;
+                break;
+            case "chicken":
+                allChickenWeight.add(addInputInt);
+                Chicken chicken = new Chicken("1", addInputString, allChickenWeight);
+                for (Integer test : chicken.getAllChickenWeight()) {
+                    chickenTotal = chickenTotal + test;
+                }
+                saveNewData(chickenTotal, chicken.getTotalChickenAmount(), "chicken");
+                chickenWeight.setText(Integer.toString(chickenTotal));
+                chickenAmount.setText(Integer.toString(chicken.getTotalChickenAmount()));
+                chickenTotal = 0;
+                break;
+            case "duck":
+                allDuckWeight.add(addInputInt);
+                Duck duck = new Duck("1", addInputString, allDuckWeight);
+                for (Integer test : duck.getAllDuckWeight()) {
+                    duckTotal = duckTotal + test;
+                }
+                saveNewData(duckTotal, duck.getTotalDuckAmount(), "duck");
+                duckWeight.setText(Integer.toString(duckTotal));
+                duckAmount.setText(Integer.toString(duck.getTotalDuckAmount()));
+                duckTotal = 0;
+                break;
+        }
+
+    }
+
+    public void saveNewData(int totalWeight, int amount, String animal) {
+        System.out.println(amount);
+        try {
+            BufferedWriter writerAmount = new BufferedWriter(new FileWriter(animal + "Amount.txt"));
+            writerAmount.write(Integer.toString(amount));
+            writerAmount.close();
+            BufferedWriter writerTotal = new BufferedWriter(new FileWriter(animal + "Weight.txt"));
+            writerTotal.write(Integer.toString(totalWeight));
+            writerTotal.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void loadStock() throws IOException {
+
+        addDropdown.getItems().add("sheep");
+        addDropdown.getItems().add("cow");
+        addDropdown.getItems().add("goat");
+        addDropdown.getItems().add("chicken");
+        addDropdown.getItems().add("duck");
 
         chickenAmount.setText(chicken.getAmount());
 
@@ -137,5 +239,6 @@ public class Livestock  {
         chickenWeight.setText(chicken.getWeight());
 
         duckWeight.setText(duck.getWeight());
+
     }
 }
