@@ -3,11 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.EducativeHomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.EducativeHomeController">
    <children>
       <Button layoutX="40.0" layoutY="33.0" mnemonicParsing="false" onAction="#toHomescreen" text="terug" />
-      <Button layoutX="66.0" layoutY="141.0" mnemonicParsing="false"   prefHeight="74.0" prefWidth="138.0" text="Rekenen" />
+      <Button layoutX="66.0" layoutY="141.0" mnemonicParsing="false" onAction="#ToReken" prefHeight="74.0" prefWidth="138.0" text="Rekenen" />
       <Button layoutX="231.0" layoutY="137.0" mnemonicParsing="false" onAction="#toSchrijven" prefHeight="82.0" prefWidth="138.0" text="Schrijven" />
-      <Button layoutX="395.0" layoutY="137.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="138.0" text="Lezen" onAction="#naLezen" />
+      <Button layoutX="395.0" layoutY="137.0" mnemonicParsing="false" onAction="#naLezen" prefHeight="82.0" prefWidth="138.0" text="Lezen" />
    </children>
 </AnchorPane>

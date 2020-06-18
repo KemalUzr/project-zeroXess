@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.RekenenHomeController">
+   <children>
+      <Button layoutX="133.0" layoutY="219.0" mnemonicParsing="false" prefHeight="163.0" prefWidth="237.0" text="Oefen" />
+      <Button layoutX="400.0" layoutY="219.0" mnemonicParsing="false" onAction="#toToets" prefHeight="163.0" prefWidth="237.0" text="Toets" />
+      <Button layoutX="40.0" layoutY="31.0" mnemonicParsing="false" onAction="#BacktoEducatieHome" text="Terug" />
+   </children>
+</AnchorPane>
