@@ -30,7 +30,7 @@ public class AfsprakenController implements Initializable{
 
     @FXML private ChoiceBox<String> doctorSelection;
     @FXML private ChoiceBox<String> daySelection;
-    @FXML private ChoiceBox<Integer> timeSelection;
+    @FXML private ChoiceBox<String> timeSelection;
     @FXML private ChoiceBox<String> specializationSelection;
 
     @FXML private Label wrongDoctorAlert;
@@ -38,6 +38,7 @@ public class AfsprakenController implements Initializable{
     private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
     private ObservableList<Specialization> specializations = FXCollections.observableArrayList();
 
+    @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
         doctorColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("doctor"));
         dayColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("day"));
@@ -47,7 +48,7 @@ public class AfsprakenController implements Initializable{
         getDoctor();
         getSpecialization();
 
-        tableView.setItems(getData());
+        tableView.setItems(Data.allAppointments);
 
         tableView.setEditable(true);
         dayColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -56,8 +57,12 @@ public class AfsprakenController implements Initializable{
     }
 
     public void naHome(ActionEvent event) throws IOException{
-        Parent showHome = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("homescreen.fxml"));
+        Parent showHome = loader.load();
         Scene showHomeScene = new Scene(showHome);
+
+        Data.allAppointments.setAll(tableView.getItems());
 
         //pakt stage informatie
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -121,14 +126,7 @@ public class AfsprakenController implements Initializable{
         allAppointments = tableView.getItems();
         appointmentSelected = tableView.getSelectionModel().getSelectedItems();
         appointmentSelected.forEach(allAppointments::remove);
-        doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), Integer.parseInt(appointmentSelected.get(1).getTime()));
-    }
-
-    public ObservableList<Appointment> getData(){
-        ObservableList<Appointment> data = FXCollections.observableArrayList();
-        data.add(new Appointment(doctors.get(0), doctors.get(0).getWorkingDays().get(2), doctors.get(0).getWorkingTimes(2).get(2), specializations.get(3)));
-        doctors.get(0).getWorkingTimes(2).remove(doctors.get(0).getWorkingTimes(2).get(2));
-        return data;
+        doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
     public void getDoctor(){
@@ -152,7 +150,7 @@ public class AfsprakenController implements Initializable{
                             @Override
                             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                                 timeSelection.getItems().clear();
-                                ObservableList<Integer> availableTimes = FXCollections.observableArrayList();
+                                ObservableList<String> availableTimes = FXCollections.observableArrayList();
                                 for (int i = 0; i < doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(); i++) {
                                     availableTimes.add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).get(i));
                                 }
@@ -163,6 +161,7 @@ public class AfsprakenController implements Initializable{
                 });
     }
 
+    //Vanaf hier alleen maar functies om de keuzes te initialiseren
     public void getSpecialization(){
         specializations.add(new Skin());
         specializations.add(new General());
@@ -183,46 +182,46 @@ public class AfsprakenController implements Initializable{
         return fDWD;
     }
 
-    public ArrayList<ArrayList<Integer>> firstDoctorWorkingTimesPerDay(){
-        ArrayList<ArrayList<Integer>> fDWTPD = new ArrayList<>();
+    public ArrayList<ArrayList<String>> firstDoctorWorkingTimesPerDay(){
+        ArrayList<ArrayList<String>> fDWTPD = new ArrayList<>();
         for (int i = 0; i < firstDoctorWorkingDays().size(); i++) {
             fDWTPD.add(firstDoctorWorkingTimes());
         }
         return fDWTPD;
     }
 
-    public ArrayList<ArrayList<Integer>> secondDoctorWorkingTimesPerDay(){
-        ArrayList<ArrayList<Integer>> sDWTPD = new ArrayList<>();
+    public ArrayList<ArrayList<String>> secondDoctorWorkingTimesPerDay(){
+        ArrayList<ArrayList<String>> sDWTPD = new ArrayList<>();
         for (int i = 0; i < firstDoctorWorkingDays().size(); i++) {
             sDWTPD.add(secondDoctorWorkingTimes());
         }
         return sDWTPD;
     }
 
-    public ArrayList<Integer> firstDoctorWorkingTimes(){
-        ArrayList<Integer> fDWT = new ArrayList<>();
-        fDWT.add(8);
-        fDWT.add(9);
-        fDWT.add(10);
-        fDWT.add(11);
-        fDWT.add(12);
-        fDWT.add(13);
-        fDWT.add(14);
-        fDWT.add(15);
+    public ArrayList<String> firstDoctorWorkingTimes(){
+        ArrayList<String> fDWT = new ArrayList<>();
+        fDWT.add("08:00");
+        fDWT.add("09:00");
+        fDWT.add("10:00");
+        fDWT.add("11:00");
+        fDWT.add("12:00");
+        fDWT.add("13:00");
+        fDWT.add("14:00");
+        fDWT.add("15:00");
         return fDWT;
     }
 
-    public ArrayList<Integer> secondDoctorWorkingTimes(){
-        ArrayList<Integer> sDWT = new ArrayList<>();
-        sDWT.add(8);
-        sDWT.add(9);
-        sDWT.add(10);
-        sDWT.add(11);
-        sDWT.add(12);
-        sDWT.add(13);
-        sDWT.add(14);
-        sDWT.add(15);
-        sDWT.add(16);
+    public ArrayList<String> secondDoctorWorkingTimes(){
+        ArrayList<String> sDWT = new ArrayList<>();
+        sDWT.add("08:00");
+        sDWT.add("09:00");
+        sDWT.add("10:00");
+        sDWT.add("11:00");
+        sDWT.add("12:00");
+        sDWT.add("13:00");
+        sDWT.add("14:00");
+        sDWT.add("15:00");
+        sDWT.add("16:00");
         return sDWT;
     }
 

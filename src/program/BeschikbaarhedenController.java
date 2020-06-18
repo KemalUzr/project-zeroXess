@@ -1,5 +1,7 @@
 package program;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BeschikbaarhedenController {
+
     public void naHome(ActionEvent event) throws IOException {
         Parent showHome = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
         Scene showHomeScene = new Scene(showHome);

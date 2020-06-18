@@ -27,8 +27,13 @@ public class InlogSchermController {
         String Wachtwoord = "123";
 
         if((inlogUsername.getText().equals(Gebruikersnaam))&&(inlogPassword.getText().equals(Wachtwoord))) {
-            Parent showMain = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("homescreen.fxml"));
+            Parent showMain = loader.load();
             Scene showMainScene = new Scene(showMain);
+
+            homescreenController controller = loader.getController();
+            controller.getData2();
 
             //pakt stage informatie
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -9,11 +9,11 @@ import java.util.List;
 public class Doctor {
     private String name;
     private ArrayList<String> workingDays;
-    private ArrayList<ArrayList<Integer>> workingTimes;
+    private ArrayList<ArrayList<String>> workingTimes;
     private ArrayList<Specialization> spezializations;
 
 
-    public Doctor(String name, ArrayList<String> workingDays, ArrayList<ArrayList<Integer>> workingTimes, ArrayList<Specialization> specializations){
+    public Doctor(String name, ArrayList<String> workingDays, ArrayList<ArrayList<String>> workingTimes, ArrayList<Specialization> specializations){
         this.name = name;
         this.workingDays = workingDays;
         this.workingTimes = workingTimes;
@@ -28,7 +28,7 @@ public class Doctor {
         return workingDays;
     }
 
-    public ArrayList<Integer> getWorkingTimes(int day){
+    public ArrayList<String> getWorkingTimes(int day){
         return workingTimes.get(day);
     }
 
