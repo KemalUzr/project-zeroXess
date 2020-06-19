@@ -42,10 +42,9 @@ public class homescreenController implements Initializable {
         Tview.setItems(Data.firstAppointments);
     }
 
-    public void getData2(){
-        Data.allAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Ear()));
-        Data.firstAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Ear()));
-
+    public void setStartingData(){
+        Data.allAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
+        Data.firstAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
     }
 
     public void update(){
