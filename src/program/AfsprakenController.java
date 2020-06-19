@@ -128,6 +128,7 @@ public class AfsprakenController implements Initializable{
         Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
+    //De komende twee functies zijn voor het initialiseren van de choiceboxes.
     public void getDoctor(){
         if(Data.doctors.isEmpty()){
             Data.doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
@@ -162,17 +163,17 @@ public class AfsprakenController implements Initializable{
                 });
     }
 
-    //Vanaf hier alleen maar functies om de keuzes te initialiseren
     public void getSpecialization(){
-        specializations.add(new Skin());
-        specializations.add(new General());
-        specializations.add(new Eyes());
-        specializations.add(new Ear());
+        specializations.add(new Specialization("Skin"));
+        specializations.add(new Specialization("General"));
+        specializations.add(new Specialization("Eyes"));
+        specializations.add(new Specialization("Ear"));
         for (int i = 0; i < specializations.size(); i++) {
             specializationSelection.getItems().add(specializations.get(i).getName());
         }
     }
 
+    //Vanaf hier alleen maar functies om de keuzes te initialiseren
     public ArrayList<String> firstDoctorWorkingDays(){
         ArrayList<String> fDWD = new ArrayList<>();
         fDWD.add("Monday");
@@ -228,15 +229,15 @@ public class AfsprakenController implements Initializable{
 
     public ArrayList<Specialization> firstDoctorSpecializations(){
         ArrayList<Specialization> fDS = new ArrayList<>();
-        fDS.add(new Ear());
-        fDS.add(new Eyes());
+        fDS.add(new Specialization("Ear"));
+        fDS.add(new Specialization("Eyes"));
         return fDS;
     }
 
     public ArrayList<Specialization> secondDoctorSpecializations(){
         ArrayList<Specialization> sDS = new ArrayList<>();
-        sDS.add(new Skin());
-        sDS.add(new General());
+        sDS.add(new Specialization("Skin"));
+        sDS.add(new Specialization("General"));
         return sDS;
     }
 }
