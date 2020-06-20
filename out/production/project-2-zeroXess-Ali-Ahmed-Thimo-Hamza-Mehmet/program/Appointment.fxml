@@ -16,7 +16,7 @@
                         <TableColumn fx:id="specializationColumn" onEditCommit="#changeSpecialization" prefWidth="190.0" text="Specialization" />
                     </columns>
                 </TableView>
-                <Label layoutX="20.0" layoutY="500.0"  text="First select a doctor" AnchorPane.bottomAnchor="105.0" AnchorPane.rightAnchor="647.0"/>
+                <Label layoutX="20.0" layoutY="500.0"  text="After adding an appointment, first select another doctor, than you can add another appointment" AnchorPane.bottomAnchor="105.0" AnchorPane.rightAnchor="105.0"/>
                 <ChoiceBox fx:id="doctorSelection" layoutX="20.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
                 <ChoiceBox fx:id="daySelection" layoutX="205.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
                 <ChoiceBox fx:id="timeSelection" layoutX="390.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
