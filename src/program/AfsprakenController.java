@@ -35,7 +35,6 @@ public class AfsprakenController implements Initializable{
 
     @FXML private Label wrongDoctorAlert;
 
-    private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
     private ObservableList<Specialization> specializations = FXCollections.observableArrayList();
 
     @Override
@@ -125,10 +124,10 @@ public class AfsprakenController implements Initializable{
         allAppointments = tableView.getItems();
         appointmentSelected = tableView.getSelectionModel().getSelectedItems();
         appointmentSelected.forEach(allAppointments::remove);
-        Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
+        //Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
-    //De komende twee functies zijn voor het initialiseren van de choiceboxes.
+    //De komende drie functies zijn voor het initialiseren van de choiceboxes.
     public void getDoctor(){
         if(Data.doctors.isEmpty()){
             Data.doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
@@ -137,6 +136,7 @@ public class AfsprakenController implements Initializable{
         for (int i = 0; i < Data.doctors.size(); i++) {
             doctorSelection.getItems().add(Data.doctors.get(i).getDoctorName());
         }
+        removeInitialTime();
         doctorSelection.getSelectionModel()
                 .selectedItemProperty()
                 .addListener(new ChangeListener<String>() {
@@ -161,6 +161,13 @@ public class AfsprakenController implements Initializable{
                         });
                     }
                 });
+    }
+
+    public void removeInitialTime(){
+        for (int i = 0; i < Data.allAppointments.size(); i++) {
+            Data.doctors.get(1).getWorkingTimes(Data.doctors.get(1).getWorkingDays().indexOf(Data.allAppointments.get(i).getDay())).remove(Data.allAppointments.get(i).getTime());
+        }
+
     }
 
     public void getSpecialization(){
