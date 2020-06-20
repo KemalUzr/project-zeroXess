@@ -120,10 +120,11 @@ public class AfsprakenController implements Initializable{
     }
 
     public void deleteButtonClicked(){
-        ObservableList<Appointment> appointmentSelected, allAppointments;
-        allAppointments = tableView.getItems();
+        ObservableList<Appointment> appointmentSelected;
         appointmentSelected = tableView.getSelectionModel().getSelectedItems();
-        appointmentSelected.forEach(allAppointments::remove);
+        appointmentSelected.forEach(Data.allAppointments::remove);
+        Data.firstAppointments.clear();
+        Data.firstAppointments.add(tableView.getItems().get(0));
         //Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
