@@ -36,9 +36,7 @@ public class SchrijvenController {
 
     public int current = 1; //houd bij welke mp3 file gebruikt moet worden
 
-    List<schrijvenQuestions> questionData = new ArrayList<schrijvenQuestions>();
-
-    public String arr[] = {
+    public String questions[] = {
             "reading a book daily is very important",
             "exercising is important to stay fit",
             "she had a habit of taking showers in lemonade",
@@ -56,7 +54,7 @@ public class SchrijvenController {
 
     //Controleerd antwoor
     public void checkTest(){
-            String answer = arr[teller - 2];
+            String answer = questions[teller - 2];
             String input = test1Field.getText();
             if (input.equals(answer)){
                 alertBox(true);
@@ -67,7 +65,7 @@ public class SchrijvenController {
             }else{
                 alertBox(false);
             }
-            if (teller == (arr.length + 2)){
+            if (teller == (questions.length + 2)){
                 done();
             }
     }
