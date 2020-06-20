@@ -1,7 +1,7 @@
 package program;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,6 +19,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.image.Image ;
+import org.w3c.dom.ls.LSOutput;
+import java.util.List;
+
 import javax.swing.*;
 
 
@@ -30,23 +33,28 @@ public class SchrijvenController {
     public Button playButton;
     public Label middleText;
     public ImageView endscreenImage;
+
     public int current = 1; //houd bij welke mp3 file gebruikt moet worden
+
+    List<schrijvenQuestions> questionData = new ArrayList<schrijvenQuestions>();
+
     public String arr[] = {
             "reading a book daily is very important",
             "exercising is important to stay fit",
-            "she had a habit of taking showers in lemonade"
+            "she had a habit of taking showers in lemonade",
     };
     public int teller = 2; //
 
     //Speelt de mp3 file die is geselecteerd
     public void startTest(){
-        final URL resource = getClass().getResource("../mp3/test" + current +".mp3");
-        final Media media = new Media(resource.toString());
-        final MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+            final URL resource = getClass().getResource("../mp3/test" + current +".mp3");
+            final Media media = new Media(resource.toString());
+            final MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+
     }
 
-    //Controleerd antwoord
+    //Controleerd antwoor
     public void checkTest(){
             String answer = arr[teller - 2];
             String input = test1Field.getText();

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.ExchangeController">
+   <children>
+      <TextField layoutX="161.0" layoutY="171.0" prefHeight="27.0" prefWidth="96.0" text="3" />
+      <TextField layoutX="161.0" layoutY="229.0" prefHeight="27.0" prefWidth="96.0" text="4" />
+      <TextField layoutX="161.0" layoutY="286.0" prefHeight="27.0" prefWidth="96.0" text="6" />
+      <TextField layoutX="161.0" layoutY="343.0" prefHeight="27.0" prefWidth="96.0" text="4" />
+      <Label layoutX="277.0" layoutY="176.0" text="Sheep" />
+      <Label layoutX="277.0" layoutY="234.0" text="Cow" />
+      <Label layoutX="277.0" layoutY="291.0" text="Goat" />
+      <Label layoutX="277.0" layoutY="348.0" text="Chicken" />
+      <TextField layoutX="161.0" layoutY="393.0" prefHeight="27.0" prefWidth="96.0" text="5" />
+      <Label layoutX="277.0" layoutY="398.0" text="Duck" />
+      <TextField layoutX="571.0" layoutY="175.0" prefHeight="27.0" prefWidth="96.0" text="3" />
+      <TextField layoutX="571.0" layoutY="233.0" prefHeight="27.0" prefWidth="96.0" text="6" />
+      <TextField layoutX="571.0" layoutY="290.0" prefHeight="27.0" prefWidth="96.0" text="4" />
+      <TextField layoutX="571.0" layoutY="347.0" prefHeight="27.0" prefWidth="96.0" text="7" />
+      <Label layoutX="686.0" layoutY="180.0" text="Sheep" />
+      <Label layoutX="686.0" layoutY="238.0" text="Cow" />
+      <Label layoutX="686.0" layoutY="295.0" text="Goat" />
+      <Label layoutX="686.0" layoutY="352.0" text="Chicken" />
+      <TextField layoutX="571.0" layoutY="397.0" prefHeight="27.0" prefWidth="96.0" text="3" />
+      <Label layoutX="686.0" layoutY="402.0" prefHeight="17.0" prefWidth="36.0" text="Duck" />
+      <Label layoutX="182.0" layoutY="84.0" prefHeight="35.0" prefWidth="54.0" text="Buy" textFill="#26e119">
+         <font>
+            <Font size="29.0" />
+         </font></Label>
+      <Label layoutX="584.0" layoutY="84.0" text="Sell" textFill="#e43535">
+         <font>
+            <Font size="29.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="176.0" text="I want to buy" AnchorPane.bottomAnchor="407.0" AnchorPane.rightAnchor="661.0" />
+      <Label layoutX="70.0" layoutY="234.0" text="I want to buy" />
+      <Label layoutX="70.0" layoutY="295.0" prefHeight="17.0" prefWidth="69.0" text="I want to buy" />
+      <Label layoutX="70.0" layoutY="348.0" text="I want to buy" />
+      <Label layoutX="70.0" layoutY="398.0" text="I want to buy" />
+      <Label layoutX="472.0" layoutY="180.0" text="I want to sell" />
+      <Label layoutX="472.0" layoutY="239.0" text="I want to sell" />
+      <Label layoutX="472.0" layoutY="295.0" prefHeight="17.0" prefWidth="69.0" text="I want to sell" />
+      <Label layoutX="472.0" layoutY="352.0" text="I want to sell" />
+      <Label layoutX="472.0" layoutY="402.0" text="I want to sell" />
+      <Button layoutX="716.0" layoutY="547.0" mnemonicParsing="false" onAction="#naHome" text="Home" />
+   </children>
+</AnchorPane>

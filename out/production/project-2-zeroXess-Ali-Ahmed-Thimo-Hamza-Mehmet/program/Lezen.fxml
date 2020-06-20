@@ -7,21 +7,30 @@
    <children>
       <TextArea prefHeight="105.0" prefWidth="800.0" text="A mother chicken sat on her nest. She was a chicken with white feathers. She was sitting on some eggs. One day the eggs cracked open." />
       <Label fx:id="Vraag1" layoutX="14.0" layoutY="140.0" prefHeight="17.0" prefWidth="548.0" text="Question 1: Where was the mother chicken sitting ? (4pts)" />
-      <RadioButton fx:id="V1A1" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="90.0" text="on her nest" />
-      <RadioButton layoutX="14.0" layoutY="174.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="81.0" text="on a rock" />
-      <RadioButton layoutX="14.0" layoutY="191.0" mnemonicParsing="false" prefWidth="90.0" text="in the street" />
+      <RadioButton fx:id="correctAnswer1" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="90.0" text="on her nest">
+         <toggleGroup>
+            <ToggleGroup fx:id="Question1" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="14.0" layoutY="174.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="81.0" text="on a rock" toggleGroup="$Question1" />
+      <RadioButton layoutX="14.0" layoutY="191.0" mnemonicParsing="false" prefWidth="90.0" text="in the street" toggleGroup="$Question1" />
 
        <Label fx:id="Vraag2" layoutX="14.0" layoutY="215.0" prefHeight="17.0" prefWidth="599.0" text="Question 2: What color were her feathers ? (3pts)" />
-       <RadioButton layoutX="14.0" layoutY="234.0" mnemonicParsing="false" text="black" />
-       <RadioButton fx:id="V2A2" layoutX="14.0" layoutY="251.0" mnemonicParsing="false" text="white" />
-       <RadioButton layoutX="14.0" layoutY="268.0" mnemonicParsing="false" text="yellow" />
+       <RadioButton layoutX="14.0" layoutY="234.0" mnemonicParsing="false" text="black">
+         <toggleGroup>
+            <ToggleGroup fx:id="Question2" />
+         </toggleGroup></RadioButton>
+       <RadioButton fx:id="correctAnswer2" layoutX="14.0" layoutY="251.0" mnemonicParsing="false" text="white" toggleGroup="$Question2" />
+       <RadioButton layoutX="14.0" layoutY="268.0" mnemonicParsing="false" text="yellow" toggleGroup="$Question2" />
 
        <Label fx:id="Vraag3" layoutX="14.0" layoutY="300.0" prefHeight="17.0" prefWidth="566.0" text="Question 3: What happend to the eggs ? (3pts)" />
-       <RadioButton layoutX="14.0" layoutY="317.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="It changed color" />
-       <RadioButton layoutX="14.0" layoutY="334.0" mnemonicParsing="false" text="nothing" />
-       <RadioButton fx:id="V3A3" layoutX="14.0" layoutY="351.0" mnemonicParsing="false" text="It cracked open" />
+       <RadioButton layoutX="14.0" layoutY="317.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="118.0" text="It changed color">
+         <toggleGroup>
+            <ToggleGroup fx:id="Question3" />
+         </toggleGroup></RadioButton>
+       <RadioButton layoutX="14.0" layoutY="334.0" mnemonicParsing="false" text="nothing" toggleGroup="$Question3" />
+       <RadioButton fx:id="correctAnswer3" layoutX="14.0" layoutY="351.0" mnemonicParsing="false" text="It cracked open" toggleGroup="$Question3" />
 
-      <Button layoutX="28.0" layoutY="407.0" mnemonicParsing="false" onAction="#submit" text="Submit" fx:id="submitButton" />
+      <Button fx:id="submitButton" layoutX="28.0" layoutY="407.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
 
       <Label layoutX="14.0" layoutY="117.0" text="Read the story and answer the following questions:" />
 

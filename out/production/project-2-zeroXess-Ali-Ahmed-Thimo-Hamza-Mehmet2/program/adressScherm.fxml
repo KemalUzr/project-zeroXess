@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.AdressController">
+    <children>
+        <VBox prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#toHomescreen" text="terug" />
+                <TableView fx:id="tableView" prefHeight="221.0" prefWidth="458.0">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" onEditCommit="#changeName" prefWidth="154.0" text="Name" />
+                        <TableColumn fx:id="emailColumn" onEditCommit="#changeName" prefWidth="147.0" text="Email" />
+                        <TableColumn fx:id="telColumn" prefWidth="156.0" text="tel" />
+                    </columns>
+                </TableView>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <TextField fx:id="nameTextField" promptText="name" />
+                        <TextField fx:id="emailTextField" promptText="email" />
+                        <TextField fx:id="telTextField" promptText="nummer" />
+                        <Button mnemonicParsing="false" onAction="#addButttonClicked" text="Add" />
+                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
