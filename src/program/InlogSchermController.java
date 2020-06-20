@@ -34,7 +34,7 @@ public class InlogSchermController {
             Scene showMainScene = new Scene(showMain);
 
             homescreenController controller = loader.getController();
-            controller.getData2();
+            controller.setStartingData();;
 
             //pakt stage informatie
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
