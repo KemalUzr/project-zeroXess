@@ -35,9 +35,7 @@ public class SchrijvenController {
     public ImageView endscreenImage;
 
     public int current = 1; //houd bij welke mp3 file gebruikt moet worden
-
-    List<schrijvenQuestions> questionData = new ArrayList<schrijvenQuestions>();
-
+    
     public String arr[] = {
             "reading a book daily is very important",
             "exercising is important to stay fit",
