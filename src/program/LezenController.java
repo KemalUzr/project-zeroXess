@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LezenController {
-    private int points = 0;
+    public int points = 0;
     @FXML
     private Button submitButton;
     @FXML
@@ -27,11 +27,11 @@ public class LezenController {
     private Label Vraag3;
 
     @FXML
-    private RadioButton V1A1;
+    public RadioButton correctAnswer1;
     @FXML
-    private RadioButton V2A2;
+    public RadioButton correctAnswer2;
     @FXML
-    private RadioButton V3A3;
+    public RadioButton correctAnswer3;
 
     public void toHomescreen(ActionEvent event) throws IOException {
         Parent tohome  = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
@@ -43,19 +43,19 @@ public class LezenController {
         window.show();
     }
     public void submit(){
-        if(V1A1.isSelected() == true) {
+        if(correctAnswer1.isSelected() == true) {
             Vraag1.setText(Vraag1.getText() + "   Correct");
             points =points +4;
         }
         else
             Vraag1.setText(Vraag1.getText()+"   Fout");
-        if(V2A2.isSelected() == true){
+        if(correctAnswer2.isSelected() == true){
             Vraag2.setText(Vraag2.getText()+"   Correct");
             points =points +3;
         }
         else
             Vraag2.setText(Vraag2.getText()+"   Fout");
-        if(V3A3.isSelected() == true){
+        if(correctAnswer3.isSelected() == true){
             Vraag3.setText(Vraag3.getText()+"   Correct");
             points =points +3;
         }

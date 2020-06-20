@@ -55,9 +55,9 @@ public class AfsprakenController implements Initializable{
 
     }
 
-    public void naHome(ActionEvent event) throws IOException{
-        Parent showHome = FXMLLoader.load(getClass().getResource("homescreen.fxml"));
-        Scene showHomeScene = new Scene(showHome);
+    public void terug(ActionEvent event) throws IOException {
+        Parent showTerug = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
+        Scene showHomeScene = new Scene(showTerug);
 
         //Data.allAppointments.setAll(tableView.getItems());
 
