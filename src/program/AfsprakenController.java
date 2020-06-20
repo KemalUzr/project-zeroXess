@@ -35,7 +35,6 @@ public class AfsprakenController implements Initializable{
 
     @FXML private Label wrongDoctorAlert;
 
-    private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
     private ObservableList<Specialization> specializations = FXCollections.observableArrayList();
 
     @Override
