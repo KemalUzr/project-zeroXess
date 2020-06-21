@@ -1,4 +1,4 @@
-package test.program;
+package program;
 
 import org.junit.Test;
 import program.LezenController;
