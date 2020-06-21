@@ -30,7 +30,7 @@ public class LezenController{
     public String Q3 = "What happend to the eggs ?\n"
             +"(A) It chcanged color\n(B) Nothing\n(C) It cracked open";
 
-    LezenQuestion[] questions = {
+    public LezenQuestion[] questions = {
             new LezenQuestion(Q1, "A", 4),
             new LezenQuestion(Q2, "B", 3),
             new LezenQuestion(Q3, "C", 3)
