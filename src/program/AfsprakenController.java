@@ -35,7 +35,6 @@ public class AfsprakenController implements Initializable{
 
     @FXML private Label wrongDoctorAlert;
 
-    private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
     private ObservableList<Specialization> specializations = FXCollections.observableArrayList();
 
     @Override
@@ -121,13 +120,15 @@ public class AfsprakenController implements Initializable{
     }
 
     public void deleteButtonClicked(){
-        ObservableList<Appointment> appointmentSelected, allAppointments;
-        allAppointments = tableView.getItems();
+        ObservableList<Appointment> appointmentSelected;
         appointmentSelected = tableView.getSelectionModel().getSelectedItems();
-        appointmentSelected.forEach(allAppointments::remove);
-        Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
+        appointmentSelected.forEach(Data.allAppointments::remove);
+        Data.firstAppointments.clear();
+        Data.firstAppointments.add(tableView.getItems().get(0));
+        //Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
+    //De komende drie functies zijn voor het initialiseren van de choiceboxes.
     public void getDoctor(){
         if(Data.doctors.isEmpty()){
             Data.doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
@@ -136,7 +137,9 @@ public class AfsprakenController implements Initializable{
         for (int i = 0; i < Data.doctors.size(); i++) {
             doctorSelection.getItems().add(Data.doctors.get(i).getDoctorName());
         }
-        doctorSelection.getSelectionModel()
+        removeInitialTime();
+        getDay();
+        /*doctorSelection.getSelectionModel()
                 .selectedItemProperty()
                 .addListener(new ChangeListener<String>() {
                     @Override
@@ -159,20 +162,57 @@ public class AfsprakenController implements Initializable{
                             }
                         });
                     }
+                });*/
+    }
+
+    public void removeInitialTime(){
+        for (int i = 0; i < Data.allAppointments.size(); i++) {
+            Data.doctors.get(1).getWorkingTimes(Data.doctors.get(1).getWorkingDays().indexOf(Data.allAppointments.get(i).getDay())).remove(Data.allAppointments.get(i).getTime());
+        }
+    }
+
+    public void getDay(){
+        doctorSelection.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                        daySelection.getItems().clear();
+                        ObservableList<String> availableDays = FXCollections.observableArrayList();
+                        for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingDays().size(); i++) {
+                            availableDays.add(Data.doctors.get(getRightDoctor()).getWorkingDays().get(i));
+                        }
+                        daySelection.getItems().addAll(availableDays);
+                        getTime();
+    }
+
+    public void getTime(){
+        daySelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                timeSelection.getItems().clear();
+                ObservableList<String> availableTimes = FXCollections.observableArrayList();
+                for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(); i++) {
+                    availableTimes.add(Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).get(i));
+                }
+                timeSelection.getItems().addAll(availableTimes);
+            }
+        });
+    }
                 });
     }
 
-    //Vanaf hier alleen maar functies om de keuzes te initialiseren
     public void getSpecialization(){
-        specializations.add(new Skin());
-        specializations.add(new General());
-        specializations.add(new Eyes());
-        specializations.add(new Ear());
+        specializations.add(new Specialization("Skin"));
+        specializations.add(new Specialization("General"));
+        specializations.add(new Specialization("Eyes"));
+        specializations.add(new Specialization("Ear"));
         for (int i = 0; i < specializations.size(); i++) {
             specializationSelection.getItems().add(specializations.get(i).getName());
         }
     }
 
+    //Vanaf hier alleen maar functies om de keuzes te initialiseren
     public ArrayList<String> firstDoctorWorkingDays(){
         ArrayList<String> fDWD = new ArrayList<>();
         fDWD.add("Monday");
@@ -228,15 +268,15 @@ public class AfsprakenController implements Initializable{
 
     public ArrayList<Specialization> firstDoctorSpecializations(){
         ArrayList<Specialization> fDS = new ArrayList<>();
-        fDS.add(new Ear());
-        fDS.add(new Eyes());
+        fDS.add(new Specialization("Ear"));
+        fDS.add(new Specialization("Eyes"));
         return fDS;
     }
 
     public ArrayList<Specialization> secondDoctorSpecializations(){
         ArrayList<Specialization> sDS = new ArrayList<>();
-        sDS.add(new Skin());
-        sDS.add(new General());
+        sDS.add(new Specialization("Skin"));
+        sDS.add(new Specialization("General"));
         return sDS;
     }
 }

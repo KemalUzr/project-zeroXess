@@ -24,7 +24,8 @@ import java.util.ResourceBundle;
 
 
 public class DiseasesController implements Initializable {
-
+    String geval1 = "Diabetes type 2, last bij beide knieën.";
+    String geval2 = "Hartaandoening, veel last bij kransslagaders.";
     public void terug(ActionEvent event) throws IOException {
         Parent showTerug = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
         Scene showHomeScene = new Scene(showTerug);
@@ -77,10 +78,21 @@ public class DiseasesController implements Initializable {
 
 
     //hier wordt data uit gehaald en gemaakt.
-    private ObservableList<Diseases> loadData() {
-        ObservableList<Diseases> data = FXCollections.observableArrayList();
-        data.add(new Diseases("Diabetes type 2, last bij beide knieeën."));
-        data.add(new Diseases("Hartaandoening, veel last bij kransslagaders."));
-        return data;
+        public DiseasesController (String geval1, String geval2){
+
+        }
+        private ObservableList<Diseases> loadData () {
+            ObservableList<Diseases> data = FXCollections.observableArrayList();
+            data.add(new Diseases(geval1));
+            data.add(new Diseases(geval2));
+            return data;
+        }
+
+    public String getGeval1() {
+        return geval1;
+    }
+
+    public String getGeval2() {
+        return geval2;
     }
 }
