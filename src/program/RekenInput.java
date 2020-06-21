@@ -1,13 +1,11 @@
 package program;
 
-import java.util.Collection;
-
-public class RekenOpdracht extends Opdracht {
+public class RekenInput extends Input {
 
     Integer Getal1;
     Integer Getal2;
 
-    public RekenOpdracht(Integer getal1, Integer getal2) {
+    public RekenInput(Integer getal1, Integer getal2) {
         //super( );
         Getal1 = getal1;
         Getal2 = getal2;

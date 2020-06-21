@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.PublicKey;
 import java.util.ResourceBundle;
 
 import static program.Afname.*;
@@ -42,16 +41,16 @@ Getal2.setText("Start");
     public void NextQestion(ActionEvent event) {
 
         //loop door opdrachten
-        for (Opdracht opdracht : Afname.opdrachten) {
+        for (program.Input input : Afname.opdrachten) {
             // checkt of reken opdarcht is
-            if (opdracht instanceof RekenOpdracht) {
+            if (input instanceof RekenInput) {
 
                 if (
                     // checkt of getal 1 gelijk is aan getal 1 zelfde voor getal 2
-                        ((RekenOpdracht) opdracht).getGetal1().equals(Integer.parseInt(Getal1.getText())) &&
-                                ((RekenOpdracht) opdracht).getGetal2().equals(Integer.parseInt(Getal2.getText()))
+                        ((RekenInput) input).getGetal1().equals(Integer.parseInt(Getal1.getText())) &&
+                                ((RekenInput) input).getGetal2().equals(Integer.parseInt(Getal2.getText()))
                 ) {
-                    opdracht.setInput(Input.getText());
+                    input.setInput(Input.getText());
 
                 }
             }
@@ -60,9 +59,9 @@ Getal2.setText("Start");
         if (type.equals("Rekenen")) {
          if (count < Afname.opdrachten.size()){
             // haalt de volgende getallen uit de array
-            Opdracht opdracht1 = Afname.opdrachten.get(count);
-            Getal1.setText("" + ((RekenOpdracht) opdracht1).getGetal1());
-            Getal2.setText("" + ((RekenOpdracht) opdracht1).getGetal2());
+            program.Input input1 = Afname.opdrachten.get(count);
+            Getal1.setText("" + ((RekenInput) input1).getGetal1());
+            Getal2.setText("" + ((RekenInput) input1).getGetal2());
 
             count++;
          }else {
@@ -74,9 +73,9 @@ Getal2.setText("Start");
 // start de toets
     public void StartButton(ActionEvent event) {
         StartToets("Rekenen");
-        Opdracht opdracht = Afname.opdrachten.get(count);
-        Getal1.setText("" + ((RekenOpdracht) opdracht).getGetal1());
-        Getal2.setText("" + ((RekenOpdracht) opdracht).getGetal2());
+        program.Input input = Afname.opdrachten.get(count);
+        Getal1.setText("" + ((RekenInput) input).getGetal1());
+        Getal2.setText("" + ((RekenInput) input).getGetal2());
         count++;
     }
 
