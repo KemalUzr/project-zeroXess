@@ -17,12 +17,17 @@ import static program.Afname.*;
 
 public class OefenRekenController {
 
-    @FXML Label Getal1;
-    @FXML Label Getal2;
-    @FXML Label Score;
+    @FXML
+    Label Getal1;
+    @FXML
+    Label Getal2;
+    @FXML
+    Label Score;
 
-    @FXML TextField OefenGetal ;
-    @FXML TextField inputoefen;
+    @FXML
+    TextField OefenGetal;
+    @FXML
+    TextField inputoefen;
 
     int count = 0;
 
