@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LivestockTest {
-
+    //checkt
     @Test
     void saveStock() throws IOException {
         String voorbeeldinvoerveld = "13"; //dit moet een invoerveld voorstellen
