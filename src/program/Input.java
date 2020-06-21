@@ -1,6 +1,6 @@
 package program;
 
-public class Opdracht {
+public class Input {
     String input;
 
 //    public Opdracht(String input) {

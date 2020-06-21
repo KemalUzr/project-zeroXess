@@ -1,9 +1,7 @@
 package program;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.TilePane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.TextArea;
@@ -19,13 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.image.Image ;
-import org.w3c.dom.ls.LSOutput;
-import java.util.List;
+import static program.Afname.*;
 
-import javax.swing.*;
 
 
 public class SchrijvenController {
+
+    static SchrijvenController obj = new SchrijvenController();
 
     public TextArea test1Field;
     public Label testNumber;
@@ -36,40 +33,42 @@ public class SchrijvenController {
 
     public int current = 1; //houd bij welke mp3 file gebruikt moet worden
 
-    List<schrijvenQuestions> questionData = new ArrayList<schrijvenQuestions>();
+    public static SchrijvenController getInstance(){
+        return obj;
+    }
 
-    public String arr[] = {
-            "reading a book daily is very important",
-            "exercising is important to stay fit",
-            "she had a habit of taking showers in lemonade",
-    };
+
     public int teller = 2; //
-
+    public int count = 0;
     //Speelt de mp3 file die is geselecteerd
     public void startTest(){
-            final URL resource = getClass().getResource("../mp3/test" + current +".mp3");
-            final Media media = new Media(resource.toString());
-            final MediaPlayer mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
-
+        StartToets("Schrijven");
+        Input input = Afname.opdrachten.get(count);
+        System.out.println(((SchrijvenInput) input).getMp3());
+    final URL resource = getClass().getResource("../mp3/" + ((SchrijvenInput) input).getMp3() +".mp3");
+    final Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaPlayer.play();
     }
 
     //Controleerd antwoor
-    public void checkTest(){
-            String answer = arr[teller - 2];
-            String input = test1Field.getText();
-            if (input.equals(answer)){
+    public void checkTest() {
+        System.out.println("size = " + opdrachten.size());
+        Input opdracht = Afname.opdrachten.get(count);
+        String answer = ((SchrijvenInput) opdracht).getAntwoord();
+        String input = test1Field.getText();
+        if (count < 2) {
+            if (input.equals(answer)) {
                 alertBox(true);
                 test1Field.clear();
-                testNumber.setText("Test " + teller);
-                current = teller ;
-                teller++;
-            }else{
+                testNumber.setText("Test " + (count + 1));
+                count++;
+            } else {
                 alertBox(false);
             }
-            if (teller == (arr.length + 2)){
-                done();
-            }
+        } else {
+            done();
+        }
     }
 
     //Eindscherm laten zien voor als de gebruiker alles goed heeft
