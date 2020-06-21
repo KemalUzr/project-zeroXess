@@ -1,10 +1,11 @@
 package program;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import program.LezenController;
 import program.LezenQuestion;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class LezenControllerTest {
     LezenController lezenController = new LezenController();
