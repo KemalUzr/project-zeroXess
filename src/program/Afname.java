@@ -7,8 +7,6 @@ public class Afname {
     static public ArrayList<Input> opdrachten = new ArrayList<>();
     static String type;
 
-    static Integer Rekencijfer;
-
 
     // berekent de score van de opdrachten.
     public static int BerekenScore() {
@@ -24,8 +22,6 @@ public class Afname {
                 }
             }
         }
-
-        Rekencijfer = aantalgoed / opdrachten.size() * 9 +1;
         return aantalgoed;
     }
 
@@ -35,25 +31,25 @@ public class Afname {
         if (type.equals("Rekenen")) {
 
             RekenInput opdracht1 = new RekenInput(1, 2);
-            RekenInput opdracht2 = new RekenInput(2, 2);
-            RekenInput opdracht3 = new RekenInput(3, 2);
-//            RekenOpdracht opdracht4 = new RekenOpdracht(1, 2);
-//            RekenOpdracht opdracht5 = new RekenOpdracht(1, 2);
-//            RekenOpdracht opdracht6 = new RekenOpdracht(1, 2);
-//            RekenOpdracht opdracht7 = new RekenOpdracht(1, 2);
- //            RekenOpdracht opdracht8 = new RekenOpdracht(1, 2);
-//            RekenOpdracht opdracht9 = new RekenOpdracht(1, 2);
-//            RekenOpdracht opdracht10 = new RekenOpdracht(1, 2);
+            RekenInput opdracht2 = new RekenInput(2, 3);
+            RekenInput opdracht3 = new RekenInput(3, 7);
+            RekenInput opdracht4 = new RekenInput(9, 5);
+            RekenInput opdracht5 = new RekenInput(9, 2);
+            RekenInput opdracht6 = new RekenInput(6, 2);
+            RekenInput opdracht7 = new RekenInput(15, 2);
+            RekenInput opdracht8 = new RekenInput(19, 4);
+            RekenInput opdracht9 = new RekenInput(1, 2);
+            RekenInput opdracht10 = new RekenInput(4, 2);
             opdrachten.add(opdracht1);
             opdrachten.add(opdracht2);
             opdrachten.add(opdracht3);
-//            opdrachten.add(opdracht4);
-//            opdrachten.add(opdracht5);
-//            opdrachten.add(opdracht6);
-//            opdrachten.add(opdracht7);
-//            opdrachten.add(opdracht8);
-//            opdrachten.add(opdracht9);
-//            opdrachten.add(opdracht10);
+            opdrachten.add(opdracht4);
+            opdrachten.add(opdracht5);
+            opdrachten.add(opdracht6);
+            opdrachten.add(opdracht7);
+            opdrachten.add(opdracht8);
+            opdrachten.add(opdracht9);
+            opdrachten.add(opdracht10);
         }
         if (type.equals("Schrijven")) {
             SchrijvenInput opdracht1 = new SchrijvenInput("reading a book daily is very important", "test1");
@@ -72,16 +68,16 @@ public class Afname {
         type = Soorttoets;
         if (type.equals("Rekenen")){
 
-            RekenOpdracht opdracht1 = new RekenOpdracht(1, nummer);
-            RekenOpdracht opdracht2 = new RekenOpdracht(2, nummer);
-            RekenOpdracht opdracht3 = new RekenOpdracht(3, nummer);
-            RekenOpdracht opdracht4 = new RekenOpdracht(4, nummer);
-            RekenOpdracht opdracht5 = new RekenOpdracht(5, nummer);
-            RekenOpdracht opdracht6 = new RekenOpdracht(6, nummer);
-            RekenOpdracht opdracht7 = new RekenOpdracht(7, nummer);
-            RekenOpdracht opdracht8 = new RekenOpdracht(8, nummer);
-            RekenOpdracht opdracht9 = new RekenOpdracht(9, nummer);
-            RekenOpdracht opdracht10 = new RekenOpdracht(10 , nummer);
+            RekenInput opdracht1 = new RekenInput(1, nummer);
+            RekenInput opdracht2 = new RekenInput(2, nummer);
+            RekenInput opdracht3 = new RekenInput(3, nummer);
+            RekenInput opdracht4 = new RekenInput(4, nummer);
+            RekenInput opdracht5 = new RekenInput(5, nummer);
+            RekenInput opdracht6 = new RekenInput(6, nummer);
+            RekenInput opdracht7 = new RekenInput(7, nummer);
+            RekenInput opdracht8 = new RekenInput(8, nummer);
+            RekenInput opdracht9 = new RekenInput(9, nummer);
+            RekenInput opdracht10 = new RekenInput(10 , nummer);
 
 
             opdrachten.add(opdracht1);

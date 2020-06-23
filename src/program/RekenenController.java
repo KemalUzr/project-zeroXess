@@ -65,8 +65,7 @@ Getal2.setText("Start");
 
             count++;
          }else {
-             BerekenScore();
-             Cijfer.setText("Je Cijfer is " + Rekencijfer);
+             Cijfer.setText("Je Cijfer is " +  BerekenScore());
          }
         }
     }
