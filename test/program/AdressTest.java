@@ -13,7 +13,7 @@ public class AdressTest {
         adress.setName("Lewis");
         assertEquals("Lewis", adress.getName());
         assertEquals("shon@shon", adress.getEmail());
-        assertEquals("2132342323", adress.getTel());
+        assertEquals(2132342323, adress.getTel());
 
 
     }

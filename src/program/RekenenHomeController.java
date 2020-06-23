@@ -21,6 +21,17 @@ public class RekenenHomeController {
         window.show();
 
     }
+    // gaat naar het Oefen overzicht
+    public void toOefen(ActionEvent event) throws IOException {
+        Parent toOefen = FXMLLoader.load(getClass().getResource("OefenRekenen.fxml"));
+        Scene ToOefen = new Scene(toOefen);
+
+        //pakt stage informatie
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(ToOefen);
+        window.show();
+
+    }
     // Gaat naar EcuatieHome overzicht
     public void BacktoEducatieHome(ActionEvent event) throws IOException {
         Parent tohome = FXMLLoader.load(getClass().getResource("educativeHome.fxml"));

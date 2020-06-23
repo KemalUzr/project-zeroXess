@@ -4,12 +4,13 @@ import javafx.beans.property.SimpleStringProperty;
 
 
     public class Adress {
-        private SimpleStringProperty name , email ,tel;
+        private final java.lang.Integer tel;
+        private SimpleStringProperty name , email ;
 
         public Adress(String name, String email, String tel) {
             this.name = new SimpleStringProperty( name);
             this.email = new SimpleStringProperty( email);
-            this.tel =  new SimpleStringProperty(tel);
+            this.tel = new Integer(tel);
         }
 
         public String getName() {
@@ -36,16 +37,8 @@ import javafx.beans.property.SimpleStringProperty;
             this.email.set(email);
         }
 
-        public String getTel() {
-            return tel.get();
-        }
-
-        public SimpleStringProperty telProperty() {
+        public Integer getTel() {
             return tel;
-        }
-
-        public void setTel(String tel) {
-            this.tel.set(tel);
         }
     }
 
