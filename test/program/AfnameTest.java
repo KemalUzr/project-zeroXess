@@ -30,8 +30,8 @@ class Checkrekeken {
 
 
        // of het oefen nummerdat mee wordt gegeven wordt gebruikt
-        Opdracht opdracht1 = Afname.opdrachten.get(0);
-        assertEquals(10, ((RekenOpdracht) opdracht1).getGetal2());
+        Input opdracht1 = Afname.opdrachten.get(0);
+        assertEquals(10, ((RekenInput) opdracht1).getGetal2());
 
 
     }

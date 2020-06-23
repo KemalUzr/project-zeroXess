@@ -33,14 +33,14 @@ public class OefenRekenController {
 
     public void NextQestion(ActionEvent event) {
 
-        for (Opdracht opdracht : Afname.opdrachten) {
+        for (Input opdracht : Afname.opdrachten) {
             // checkt of reken opdarcht is
-            if (opdracht instanceof RekenOpdracht) {
+            if (opdracht instanceof RekenInput) {
 
                 if (
                     // checkt of getal 1 gelijk is aan getal 1 zelfde voor getal 2
-                        ((RekenOpdracht) opdracht).getGetal1().equals(Integer.parseInt(Getal1.getText())) &&
-                                ((RekenOpdracht) opdracht).getGetal2().equals(Integer.parseInt(Getal2.getText()))
+                        ((RekenInput) opdracht).getGetal1().equals(Integer.parseInt(Getal1.getText())) &&
+                                ((RekenInput) opdracht).getGetal2().equals(Integer.parseInt(Getal2.getText()))
                 ) {
                     opdracht.setInput(inputoefen.getText());
 
@@ -51,9 +51,9 @@ public class OefenRekenController {
         if (type.equals("Rekenen")) {
             if (count < Afname.opdrachten.size()) {
                 // haalt de volgende getallen uit de array
-                Opdracht opdracht1 = Afname.opdrachten.get(count);
-                Getal1.setText("" + ((RekenOpdracht) opdracht1).getGetal1());
-                Getal2.setText("" + ((RekenOpdracht) opdracht1).getGetal2());
+                Input opdracht1 = Afname.opdrachten.get(count);
+                Getal1.setText("" + ((RekenInput) opdracht1).getGetal1());
+                Getal2.setText("" + ((RekenInput) opdracht1).getGetal2());
 
                 count++;
             } else {
@@ -70,9 +70,9 @@ public class OefenRekenController {
 
         StartOefen("Rekenen", nummer);
 
-        Opdracht opdracht = Afname.opdrachten.get(count);
-        Getal1.setText("" + ((RekenOpdracht) opdracht).getGetal1());
-        Getal2.setText("" + ((RekenOpdracht) opdracht).getGetal2());
+        Input opdracht = Afname.opdrachten.get(count);
+        Getal1.setText("" + ((RekenInput) opdracht).getGetal1());
+        Getal2.setText("" + ((RekenInput) opdracht).getGetal2());
         count++;
 
     }
