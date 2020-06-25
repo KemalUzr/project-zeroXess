@@ -78,9 +78,6 @@ public class DiseasesController implements Initializable {
 
 
     //hier wordt data uit gehaald en gemaakt.
-        public DiseasesController (String geval1, String geval2){
-
-        }
         private ObservableList<Diseases> loadData () {
             ObservableList<Diseases> data = FXCollections.observableArrayList();
             data.add(new Diseases(geval1));
