@@ -54,36 +54,36 @@ public class DiseasesController implements Initializable {
         Tview.setEditable(true);
         Disease.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        }
-        //De geselecteerde item in de column kan geweizigd worden.
-        public void veranderNaam(TableColumn.CellEditEvent editCell){
-            Diseases adressSelected = Tview.getSelectionModel().getSelectedItem();
-            adressSelected.setDisease(editCell.getNewValue().toString());
-        }
+    }
+    //De geselecteerde item in de column kan geweizigd worden.
+    public void veranderNaam(TableColumn.CellEditEvent editCell){
+        Diseases adressSelected = Tview.getSelectionModel().getSelectedItem();
+        adressSelected.setDisease(editCell.getNewValue().toString());
+    }
 
 
-        //Items toevoegen door Add knop zie .fxml file.
-        public void addButtton(){
-            Diseases disease = new Diseases(DiseaseName.getText());
-            Tview.getItems().add(disease);
-        }
+    //Items toevoegen door Add knop zie .fxml file.
+    public void addButtton(){
+        Diseases disease = new Diseases(DiseaseName.getText());
+        Tview.getItems().add(disease);
+    }
 
-        //Items verwijderen door Delete knop zie .fxml file.
-        public void deleteButton(){
-            ObservableList<Diseases> adressSelected, allAdresses;
-            allAdresses = Tview.getItems();
-            adressSelected = Tview.getSelectionModel().getSelectedItems();
-            adressSelected.forEach(allAdresses::remove);
-        }
+    //Items verwijderen door Delete knop zie .fxml file.
+    public void deleteButton(){
+        ObservableList<Diseases> adressSelected, allAdresses;
+        allAdresses = Tview.getItems();
+        adressSelected = Tview.getSelectionModel().getSelectedItems();
+        adressSelected.forEach(allAdresses::remove);
+    }
 
 
     //hier wordt data uit gehaald en gemaakt.
-        private ObservableList<Diseases> loadData () {
-            ObservableList<Diseases> data = FXCollections.observableArrayList();
-            data.add(new Diseases(geval1));
-            data.add(new Diseases(geval2));
-            return data;
-        }
+    private ObservableList<Diseases> loadData () {
+        ObservableList<Diseases> data = FXCollections.observableArrayList();
+        data.add(new Diseases(geval1));
+        data.add(new Diseases(geval2));
+        return data;
+    }
 
     public String getGeval1() {
         return geval1;
