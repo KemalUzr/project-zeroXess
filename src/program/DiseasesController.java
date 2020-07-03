@@ -1,31 +1,27 @@
 package program;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javax.swing.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class DiseasesController implements Initializable {
-    String geval1 = "Diabetes type 2, last bij beide knieën.";
-    String geval2 = "Hartaandoening, veel last bij kransslagaders.";
+
+
     public void terug(ActionEvent event) throws IOException {
         Parent showTerug = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
         Scene showHomeScene = new Scene(showTerug);
@@ -54,42 +50,47 @@ public class DiseasesController implements Initializable {
         Tview.setEditable(true);
         Disease.setCellFactory(TextFieldTableCell.forTableColumn());
 
-    }
-    //De geselecteerde item in de column kan geweizigd worden.
-    public void veranderNaam(TableColumn.CellEditEvent editCell){
-        Diseases adressSelected = Tview.getSelectionModel().getSelectedItem();
-        adressSelected.setDisease(editCell.getNewValue().toString());
-    }
+        }
+        //De geselecteerde item in de column kan geweizigd worden.
+        public void veranderNaam(TableColumn.CellEditEvent editCell){
+            Diseases adressSelected = Tview.getSelectionModel().getSelectedItem();
+            adressSelected.setDisease(editCell.getNewValue().toString());
+        }
 
 
-    //Items toevoegen door Add knop zie .fxml file.
-    public void addButtton(){
-        Diseases disease = new Diseases(DiseaseName.getText());
-        Tview.getItems().add(disease);
-    }
+        //Items toevoegen door Add knop zie .fxml file.
+        public void addButtton(){
+            Diseases disease = new Diseases(DiseaseName.getText());
+            Tview.getItems().add(disease);
+        }
 
-    //Items verwijderen door Delete knop zie .fxml file.
-    public void deleteButton(){
-        ObservableList<Diseases> adressSelected, allAdresses;
-        allAdresses = Tview.getItems();
-        adressSelected = Tview.getSelectionModel().getSelectedItems();
-        adressSelected.forEach(allAdresses::remove);
-    }
+        //Items verwijderen door Delete knop zie .fxml file.
+        public void deleteButton(){
+            ObservableList<Diseases> adressSelected, allAdresses;
+            allAdresses = Tview.getItems();
+            adressSelected = Tview.getSelectionModel().getSelectedItems();
+            adressSelected.forEach(allAdresses::remove);
+        }
 
+
+
+
+    String diabetesGeval = "Diabetes type 2, last bij beide knieën.";
+    String hartaandoeningGeval = "Hartaandoening, veel last bij kransslagaders.";
 
     //hier wordt data uit gehaald en gemaakt.
-    private ObservableList<Diseases> loadData () {
-        ObservableList<Diseases> data = FXCollections.observableArrayList();
-        data.add(new Diseases(geval1));
-        data.add(new Diseases(geval2));
-        return data;
+        private ObservableList<Diseases> loadData () {
+            ObservableList<Diseases> data = FXCollections.observableArrayList();
+            data.add(new Diseases(diabetesGeval));
+            data.add(new Diseases(hartaandoeningGeval));
+            return data;
+        }
+
+    public String getDiabetesGeval() {
+        return diabetesGeval;
     }
 
-    public String getGeval1() {
-        return geval1;
-    }
-
-    public String getGeval2() {
-        return geval2;
+    public String getHartaandoeningGeval() {
+        return hartaandoeningGeval;
     }
 }

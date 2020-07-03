@@ -21,20 +21,33 @@ import static program.Afname.*;
 
 
 public class SchrijvenController {
-
-    static SchrijvenController obj = new SchrijvenController();
-
     public TextArea test1Field;
     public Label testNumber;
     public Button checkButton;
     public Button playButton;
     public Label middleText;
     public ImageView endscreenImage;
-
     public int current = 1; //houd bij welke mp3 file gebruikt moet worden
 
+    private static SchrijvenController instance;
+
+    // ik heb hieronder een private controller gemaakt. Hier door kan er maar 1 instance gemaakt worden
+    // je vraagt deze dan ook alsvolgt op: SchrijvenController.getInstance();
+    // je kunt nu niet meer SchrijvenController schrijven = new SchrijvenController();
+    // Kijk maar naar de if statement hieronder.
+    // als er al een instance is dan is 'instance == null' false, waardoor hij de zelfde  'return instance' geven.
+    // Als er geen instance is dus 'instance == nul' is true, dan kun je maar als het ware 1 object aanmaken.
+    private SchrijvenController(){
+
+    }
+
+    // ik heb dit weggehaald: static SchrijvenController obj = new SchrijvenController();
     public static SchrijvenController getInstance(){
-        return obj;
+        if (instance == null){
+            instance = new SchrijvenController();
+        }
+        return instance;
+       // dit ook: return obj;
     }
     public int teller = 2; //
     public int count = 0;
@@ -49,7 +62,7 @@ public class SchrijvenController {
     mediaPlayer.play();
     }
 
-    //Controleerd antwoor
+    //Controleerd antwoord
     public void checkTest() {
         System.out.println("size = " + opdrachten.size());
         Input opdracht = Afname.opdrachten.get(count);
