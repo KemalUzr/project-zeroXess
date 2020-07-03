@@ -36,8 +36,6 @@ public class SchrijvenController {
     public static SchrijvenController getInstance(){
         return obj;
     }
-
-
     public int teller = 2; //
     public int count = 0;
     //Speelt de mp3 file die is geselecteerd

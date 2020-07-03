@@ -1,10 +1,12 @@
 package program;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
-    public class DiseasesControllerTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+public class DiseasesControllerTest {
         //deze test kijd door middel van Decsion coverage of de aandoeningen van de medische dossier klopt.
 
         @Test

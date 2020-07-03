@@ -1,6 +1,5 @@
 package program;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +14,6 @@ class Checkrekeken {
     // checkt of die de objecten aanmaakt.
    @Test
     public void CheckStartToets(){
-
        assertEquals(0, Afname.opdrachten.size());
        StartToets("Rekenen");
        assertEquals(3, Afname.opdrachten.size());
