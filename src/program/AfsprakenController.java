@@ -37,6 +37,11 @@ public class AfsprakenController implements Initializable{
 
     private ObservableList<Specialization> specializations = FXCollections.observableArrayList();
 
+    public static Doctor doctorSelected;
+    public static String daySelected;
+    public static String timeSelected;
+    public static Specialization specializationSelected;
+
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
         doctorColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("doctor"));
@@ -44,8 +49,9 @@ public class AfsprakenController implements Initializable{
         timeColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("time"));
         specializationColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("specialization"));
 
-        getDoctor();
-        getSpecialization();
+        wrongDoctorAlert.setText("");
+        setDoctorChoicebox();
+        setSpecializationChoicebox();
 
         tableView.setItems(Data.allAppointments);
 
@@ -58,8 +64,6 @@ public class AfsprakenController implements Initializable{
     public void terug(ActionEvent event) throws IOException {
         Parent showTerug = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
         Scene showHomeScene = new Scene(showTerug);
-
-        //Data.allAppointments.setAll(tableView.getItems());
 
         //pakt stage informatie
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -78,46 +82,87 @@ public class AfsprakenController implements Initializable{
     }
 
     public void addButtonClicked(){
-        wrongDoctorAlert.setText("");
+
         if(checkDoctorSpecialization()) {
-            Appointment appointment = new Appointment(Data.doctors.get(getRightDoctor()), daySelection.getValue(), timeSelection.getValue(), specializations.get(getRightSpecialization()));
-            //tableView.getItems().add(appointment);
-            Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).remove(timeSelection.getValue());
-            timeSelection.getItems().clear();
+            /*Appointment appointment = new Appointment(Data.doctors.get(getRightDoctor()),
+                    daySelection.getValue(),
+                    timeSelection.getValue(),
+                    specializations.get(getRightSpecialization()));*/
+            Appointment appointment = new Appointment(doctorSelected, daySelected, timeSelected, specializationSelected);
+            Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelected)).remove(timeSelected);
+            //timeSelection.getItems().clear();
             Data.allAppointments.add(appointment);
+            updateFirstAppointment();
         } else {
             wrongDoctorAlert.setText("This doctor doesn't have this specialization.");
         }
     }
 
+    public void selectedDoctor(){
+        for (int i = 0; i < Data.doctors.size(); i++) {
+            if (doctorSelection.getValue().contains(Data.doctors.get(i).getDoctorName())) {
+                doctorSelected = Data.doctors.get(i);
+            }
+        }
+    }
+
+    public void selectedDay(){
+        daySelected = daySelection.getValue();
+    }
+
+    public void selectedTime(){
+        timeSelected = timeSelection.getValue();
+    }
+
+    public void selectedSpecialization(){
+        for (int i = 0; i < specializations.size(); i++) {
+            if (specializationSelection.getValue().contains(specializations.get(i).getName())) {
+                specializationSelected = specializations.get(i);
+            }
+        }
+
+    }
+
+    public void updateFirstAppointment(){
+        for (int i = 0; i < Data.allAppointments.size(); i++) {
+            for (int j = 0; j < Data.firstAppointments.size(); j++) {
+                if(Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) < Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
+                    Data.firstAppointments.set(0, Data.allAppointments.get(i));
+                } else if (Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) == Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
+                    if (Data.allAppointments.get(i).getTimeAsInt(Data.allAppointments.get(i).getTime()) < Data.firstAppointments.get(j).getTimeAsInt(Data.firstAppointments.get(j).getTime())){
+                        Data.firstAppointments.set(0, Data.allAppointments.get(i));
+                    }
+                }
+            }
+        }
+    }
+
     public boolean checkDoctorSpecialization(){
-        int count = 0;
-        while(Data.doctors.get(getRightDoctor()).getSpecialization().size() > count){
-            if(Data.doctors.get(getRightDoctor()).getSpecialization().get(count).getName().equals(specializations.get(getRightSpecialization()).getName())){
+        for (int i = 0; i < Data.doctors.get(getRightDoctor()).getSpecialization().size(); i++) {
+            if (doctorSelected.getSpecialization().get(i).getName().equals(specializationSelected.getName())){
                 return true;
             }
-            count ++;
         }
         return false;
     }
 
     public int getRightDoctor() {
         for (int i = 0; i < Data.doctors.size(); i++) {
-            if (doctorSelection.getValue().contains(Data.doctors.get(i).getDoctorName())) {
+            if (doctorSelected.equals(Data.doctors.get(i).getDoctorName())) {
                 return i;
             }
         }
         return 0;
     }
 
-    public int getRightSpecialization(){
+    /*public int getRightSpecialization(){
         for (int i = 0; i < specializations.size(); i++) {
-            if (specializationSelection.getValue().contains(specializations.get(i).getName())) {
+            if (specializationSelected.equals(specializations.get(i).getName())) {
                 return i;
             }
         }
         return 0;
-    }
+    }*/
 
     public void deleteButtonClicked(){
         ObservableList<Appointment> appointmentSelected;
@@ -125,44 +170,8 @@ public class AfsprakenController implements Initializable{
         appointmentSelected.forEach(Data.allAppointments::remove);
         Data.firstAppointments.clear();
         Data.firstAppointments.add(tableView.getItems().get(0));
+        updateFirstAppointment();
         //Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
-    }
-
-    //De komende drie functies zijn voor het initialiseren van de choiceboxes.
-    public void getDoctor(){
-        if(Data.doctors.isEmpty()){
-            Data.doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
-            Data.doctors.add(new Doctor("Dr. Kees de Beer", firstDoctorWorkingDays(), secondDoctorWorkingTimesPerDay(), secondDoctorSpecializations()));
-        }
-        for (int i = 0; i < Data.doctors.size(); i++) {
-            doctorSelection.getItems().add(Data.doctors.get(i).getDoctorName());
-        }
-        removeInitialTime();
-        getDay();
-        /*doctorSelection.getSelectionModel()
-                .selectedItemProperty()
-                .addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                        daySelection.getItems().clear();
-                        ObservableList<String> availableDays = FXCollections.observableArrayList();
-                        for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingDays().size(); i++) {
-                            availableDays.add(Data.doctors.get(getRightDoctor()).getWorkingDays().get(i));
-                        }
-                        daySelection.getItems().addAll(availableDays);
-                        daySelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-                            @Override
-                            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                                timeSelection.getItems().clear();
-                                ObservableList<String> availableTimes = FXCollections.observableArrayList();
-                                for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(); i++) {
-                                    availableTimes.add(Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).get(i));
-                                }
-                                timeSelection.getItems().addAll(availableTimes);
-                            }
-                        });
-                    }
-                });*/
     }
 
     public void removeInitialTime(){
@@ -171,38 +180,63 @@ public class AfsprakenController implements Initializable{
         }
     }
 
-    public void getDay(){
+    //De komende drie functies zijn voor het initialiseren van de choiceboxes.
+    public void setDoctorChoicebox(){
+        if(Data.doctors.isEmpty()){
+            Data.doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
+            Data.doctors.add(new Doctor("Dr. Kees de Beer", firstDoctorWorkingDays(), secondDoctorWorkingTimesPerDay(), secondDoctorSpecializations()));
+        }
+        for (int i = 0; i < Data.doctors.size(); i++) {
+            doctorSelection.getItems().add(Data.doctors.get(i).getDoctorName());
+        }
+        removeInitialTime();
+        setDayChoicebox();
+    }
+
+    public void setDayChoicebox(){
         doctorSelection.getSelectionModel()
                 .selectedItemProperty()
                 .addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+
                         daySelection.getItems().clear();
+                        selectedDoctor();
                         ObservableList<String> availableDays = FXCollections.observableArrayList();
                         for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingDays().size(); i++) {
                             availableDays.add(Data.doctors.get(getRightDoctor()).getWorkingDays().get(i));
                         }
                         daySelection.getItems().addAll(availableDays);
-                        getTime();
+
+                        setTimeChoicebox();
     }
 
-    public void getTime(){
-        daySelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                timeSelection.getItems().clear();
-                ObservableList<String> availableTimes = FXCollections.observableArrayList();
-                for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(); i++) {
-                    availableTimes.add(Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).get(i));
-                }
-                timeSelection.getItems().addAll(availableTimes);
-            }
-        });
-    }
+    public void setTimeChoicebox(){
+        daySelection.getSelectionModel()
+                .selectedItemProperty()
+                .addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                        timeSelection.getItems().clear();
+                        ObservableList<String> availableTimes = FXCollections.observableArrayList();
+                        for (int i = 0; i < Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(); i++) {
+                            availableTimes.add(Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).get(i));
+                        }
+                        timeSelection.getItems().addAll(availableTimes);
+                        selectedDay();
+                        timeSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                            @Override
+                            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                                selectedTime();
+                            }
+                        });
+                    }
+                });
+                    }
                 });
     }
 
-    public void getSpecialization(){
+    public void setSpecializationChoicebox(){
         specializations.add(new Specialization("Skin"));
         specializations.add(new Specialization("General"));
         specializations.add(new Specialization("Eyes"));
@@ -210,6 +244,12 @@ public class AfsprakenController implements Initializable{
         for (int i = 0; i < specializations.size(); i++) {
             specializationSelection.getItems().add(specializations.get(i).getName());
         }
+        specializationSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                selectedSpecialization();
+            }
+        });
     }
 
     //Vanaf hier alleen maar functies om de keuzes te initialiseren

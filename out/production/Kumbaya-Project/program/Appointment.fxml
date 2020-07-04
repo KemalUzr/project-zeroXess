@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.AfsprakenController">
+
+            <children>
+                <TableView fx:id="tableView" layoutX="20.0" layoutY="18.0" prefHeight="450.0" prefWidth="760.0" AnchorPane.bottomAnchor="130.0" AnchorPane.rightAnchor="20.0">
+                    <columns>
+                        <TableColumn fx:id="doctorColumn" onEditCommit="#changeDoctor" prefWidth="190.0" text="Doctor" />
+                        <TableColumn fx:id="dayColumn" onEditCommit="#changeDoctor" prefWidth="190.0" text="Day" />
+                        <TableColumn fx:id="timeColumn" onEditCommit="#changeDoctor" prefWidth="190.0" text="Time" />
+                        <TableColumn fx:id="specializationColumn" onEditCommit="#changeSpecialization" prefWidth="190.0" text="Specialization" />
+                    </columns>
+                </TableView>
+
+                <Label layoutX="20.0" layoutY="500.0"  text="After adding an appointment, first select another doctor, than you can add another appointment" AnchorPane.bottomAnchor="105.0" AnchorPane.rightAnchor="105.0"/>
+                <ChoiceBox fx:id="doctorSelection" layoutX="20.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
+                <ChoiceBox fx:id="daySelection" layoutX="205.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
+                <ChoiceBox fx:id="timeSelection" layoutX="390.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
+                <ChoiceBox fx:id="specializationSelection" layoutX="575.0" layoutY="500.0" prefWidth="185.0" prefHeight="27.0"/>
+
+                <Label fx:id="wrongDoctorAlert" layoutX="238.0" layoutY="550.0" prefHeight="22.0" prefWidth="341.0">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Button layoutX="600.0" layoutY="559.0" mnemonicParsing="false" onAction="#addButtonClicked" text="Add" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="150.0" />
+                <Button layoutX="6750.0" layoutY="559.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="75.0" />
+                <Button layoutX="734.0" layoutY="559.0" mnemonicParsing="false" onAction="#terug" text="Home" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.5" />
+            </children>
+
+
+</AnchorPane>
