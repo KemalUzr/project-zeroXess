@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="program.EducativeHomeController">
+   <children>
+      <Button layoutX="697.0" layoutY="540.0" mnemonicParsing="false" onAction="#toHomescreen" text="Home" />
+      <Button layoutX="167.0" layoutY="222.0" mnemonicParsing="false" onAction="#ToReken" prefHeight="74.0" prefWidth="138.0" text="Rekenen" />
+      <Button layoutX="332.0" layoutY="218.0" mnemonicParsing="false" onAction="#toSchrijven" prefHeight="82.0" prefWidth="138.0" text="Schrijven" />
+      <Button layoutX="496.0" layoutY="218.0" mnemonicParsing="false" onAction="#naLezen" prefHeight="82.0" prefWidth="138.0" text="Lezen" />
+   </children>
+</AnchorPane>
