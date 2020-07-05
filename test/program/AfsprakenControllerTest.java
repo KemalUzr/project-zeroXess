@@ -28,10 +28,6 @@ public class AfsprakenControllerTest {
             afsprakenController.firstDoctorWorkingDays().get(2),
             afsprakenController.secondDoctorWorkingTimes().get(3),
             afsprakenController.secondDoctorSpecializations().get(1));
-    private Appointment appointment3 = new Appointment(doctor,
-            afsprakenController.firstDoctorWorkingDays().get(2),
-            afsprakenController.firstDoctorWorkingTimes().get(3),
-            afsprakenController.secondDoctorSpecializations().get(1));
 
     public void setup(){
         Data.allAppointments.clear();
