@@ -29,7 +29,7 @@
                 </Label>
                 <Button layoutX="600.0" layoutY="559.0" mnemonicParsing="false" onAction="#addButtonClicked" text="Add" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="150.0" />
                 <Button layoutX="6750.0" layoutY="559.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="75.0" />
-                <Button layoutX="734.0" layoutY="559.0" mnemonicParsing="false" onAction="#terug" text="Home" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.5" />
+                <Button layoutX="734.0" layoutY="559.0" mnemonicParsing="false" onAction="#terug" text="Back" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.5" />
             </children>
 
 
