@@ -166,7 +166,6 @@ public class AfsprakenController implements Initializable{
         Data.firstAppointments.clear();
         Data.firstAppointments.add(tableView.getItems().get(0));
         updateFirstAppointment();
-        //Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
     //Zorgt ervoor dat de hardcoded tijd al uit de ChoiceBoxes gehaald wordt
@@ -196,7 +195,6 @@ public class AfsprakenController implements Initializable{
                 .addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-
                         daySelection.getItems().clear();
                         selectedDoctor();
                         ObservableList<String> availableDays = FXCollections.observableArrayList();
