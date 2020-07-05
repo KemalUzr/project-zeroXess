@@ -11,7 +11,6 @@ public class Afname {
     // berekent de score van de opdrachten.
     public static int BerekenScore() {
         int aantalgoed= 0;
-
         if (type.equals("Rekenen")) {
             for (Input Shon : opdrachten) {
                     // doet alleen dingen als het een rekenopdracht is.
@@ -29,7 +28,7 @@ public class Afname {
     public static void StartToets( String Soorttoets ) {
             type = Soorttoets;
         if (type.equals("Rekenen")) {
-
+            opdrachten.clear();
             RekenInput opdracht1 = new RekenInput(1, 2);
             RekenInput opdracht2 = new RekenInput(2, 3);
             RekenInput opdracht3 = new RekenInput(3, 7);
@@ -52,6 +51,7 @@ public class Afname {
             opdrachten.add(opdracht10);
         }
         if (type.equals("Schrijven")) {
+            opdrachten.clear();
             SchrijvenInput opdracht1 = new SchrijvenInput("reading a book daily is very important", "test1");
             opdrachten.add(opdracht1);
             SchrijvenInput opdracht2 = new SchrijvenInput("exercising is important to stay fit", "test2");
@@ -67,7 +67,7 @@ public class Afname {
        Integer nummer = Integer.parseInt(oefenNummer);
         type = Soorttoets;
         if (type.equals("Rekenen")){
-
+            opdrachten.clear();
             RekenInput opdracht1 = new RekenInput(1, nummer);
             RekenInput opdracht2 = new RekenInput(2, nummer);
             RekenInput opdracht3 = new RekenInput(3, nummer);

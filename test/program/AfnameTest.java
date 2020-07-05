@@ -24,12 +24,12 @@ class AfnameTest {
  // checkt of de objecten worden aangemaakt
        assertEquals(10, Afname.opdrachten.size());
        StartOefen("Rekenen" , "10");
-       assertEquals(20,Afname.opdrachten.size());
 
 
        // of het oefen nummerdat mee wordt gegeven wordt gebruikt
+        // vraagt het getal op wat is meee gegeven dus 10
         Input opdracht1 = Afname.opdrachten.get(0);
-        assertEquals(2, ((RekenInput) opdracht1).getGetal2());
+        assertEquals(10, ((RekenInput) opdracht1).getGetal2());
 
 
     }
