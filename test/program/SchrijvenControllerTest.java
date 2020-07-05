@@ -16,7 +16,6 @@ class SchrijvenControllerTest {
         String userinput1 = "reading a book daily is very important";
         String userinput2 = "exercising is important to stay fit";
         String userinput3 = "she had a habit of taking showers in lemonade";
-        int count = 0;
         StartToets("Schrijven");
         int loopnummer = 0;
 

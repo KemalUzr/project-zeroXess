@@ -9,7 +9,7 @@ import static program.Afname.*;
 // condiston 1
 // conditosn 2
 
-class Checkrekeken {
+class AfnameTest {
 
     // checkt of die de objecten aanmaakt.
    @Test
