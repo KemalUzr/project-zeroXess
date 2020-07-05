@@ -8,14 +8,15 @@ import java.lang.reflect.Array;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SchrijvenControllerTest {
-    //dit moeten invoervelden voorstellen
-    String voorbeeldinvoer1 = "reading a book daily is very important";
-    String voorbeeldinvoer2 = "exercising is important to stay fit";
-    String voorbeeldinvoer3 = "she had a habit of taking showers in lemonade";
-    int count = 0;
+
 
     @Test
     public void testCheckTest(){
+        //dit moeten invoervelden voorstellen
+        String userinput1 = "reading a book daily is very important";
+        String userinput2 = "exercising is important to stay fit";
+        String userinput3 = "she had a habit of taking showers in lemonade";
+        int count = 0;
         StartToets("Schrijven");
         int loopnummer = 0;
 
@@ -23,13 +24,13 @@ class SchrijvenControllerTest {
             Input input = Afname.opdrachten.get(loopnummer);
             if (loopnummer == 0){
                 //checkt of de invgevoerde text gelijk staat aan het antwoord.
-                assertEquals(voorbeeldinvoer1, ((SchrijvenInput) input).getAntwoord());
+                assertEquals(userinput1, ((SchrijvenInput) input).getAntwoord());
             }
             if (loopnummer == 1){
-                assertEquals(voorbeeldinvoer2, ((SchrijvenInput) input).getAntwoord());
+                assertEquals(userinput2, ((SchrijvenInput) input).getAntwoord());
             }
             if (loopnummer == 2){
-                assertEquals(voorbeeldinvoer3, ((SchrijvenInput) input).getAntwoord());
+                assertEquals(userinput3, ((SchrijvenInput) input).getAntwoord());
             }
             System.out.println(((SchrijvenInput) input).getAntwoord());
             loopnummer++;

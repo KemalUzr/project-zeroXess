@@ -16,20 +16,20 @@ class Checkrekeken {
     public void CheckStartToets(){
        assertEquals(0, Afname.opdrachten.size());
        StartToets("Rekenen");
-       assertEquals(3, Afname.opdrachten.size());
+       assertEquals(10, Afname.opdrachten.size());
    }
 
     @Test
     public void CheckOefen(){
  // checkt of de objecten worden aangemaakt
-       assertEquals(0, Afname.opdrachten.size());
+       assertEquals(10, Afname.opdrachten.size());
        StartOefen("Rekenen" , "10");
-       assertEquals(10,Afname.opdrachten.size());
+       assertEquals(20,Afname.opdrachten.size());
 
 
        // of het oefen nummerdat mee wordt gegeven wordt gebruikt
         Input opdracht1 = Afname.opdrachten.get(0);
-        assertEquals(10, ((RekenInput) opdracht1).getGetal2());
+        assertEquals(2, ((RekenInput) opdracht1).getGetal2());
 
 
     }
