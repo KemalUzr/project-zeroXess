@@ -16,27 +16,27 @@ public class LezenControllerTest {
 
     //De volgende tests test of de antwoorden goed werken
     @Test
-    public void Test(){
+    public void Vraag1Correct(){
         assertTrue(antwoordA.equals(lezenController.questions[0].answer));
     }
     @Test
-    public void Test1(){
+    public void Vraag1Fout(){
         assertFalse(antwoordB.equals(lezenController.questions[0].answer));
     }
     @Test
-    public void Test3(){
+    public void Vraag2Correct(){
         assertTrue(antwoordB.equals(lezenController.questions[1].answer));
     }
     @Test
-    public void Test4(){
+    public void Vraag2Fout(){
         assertFalse(antwoordA.equals(lezenController.questions[1].answer));
     }
     @Test
-    public void Test5(){
+    public void Vraag3Correct(){
         assertTrue(antwoordC.equals(lezenController.questions[2].answer));
     }
     @Test
-    public void Test6(){
+    public void Vraag3Fout(){
         assertFalse(antwoordA.equals(lezenController.questions[2].answer));
     }
 }
