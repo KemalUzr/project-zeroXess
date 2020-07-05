@@ -51,20 +51,6 @@ public class homescreenController implements Initializable {
                 afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
     }
 
-    /*public void updateFirstAppointment(){
-        for (int i = 0; i < Data.allAppointments.size(); i++) {
-            for (int j = 0; j < Data.firstAppointments.size(); j++) {
-                if(Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) < Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
-                    Data.firstAppointments.set(0, Data.allAppointments.get(i));
-                } else if (Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) == Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
-                    if (Data.allAppointments.get(i).getTimeAsInt(Data.allAppointments.get(i).getTime()) < Data.firstAppointments.get(j).getTimeAsInt(Data.firstAppointments.get(j).getTime())){
-                        Data.firstAppointments.set(0, Data.allAppointments.get(i));
-                    }
-                }
-            }
-        }
-    }*/
-
     public void terugLogin(ActionEvent event) throws IOException {
         Parent showLogin = FXMLLoader.load(getClass().getResource("inlogScherm.fxml"));
         Scene showLoginScene = new Scene(showLogin);
