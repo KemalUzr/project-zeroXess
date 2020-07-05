@@ -48,6 +48,7 @@ public class AfsprakenControllerTest {
         appointments.add(appointment);
     }
 
+    //Deze test kijkt of als er op addButtonClicked de juiste appointment wordt toegevoegd
     @Test
     public void checkAfspraakMogelijk(){
         setup();
@@ -58,24 +59,25 @@ public class AfsprakenControllerTest {
         assertEquals(appointments.get(0).getSpecialization(), Data.allAppointments.get(1).getSpecialization());
     }
 
+    //Deze test kijkt of de tijd verwijderd is, als de tijd verwijderd is bij de setup functie, dan zou je i.p.v. bij getWorkingTimes(2).get(2) een 10:00 uur (deze tijd is verwijderd bij de setup) nu een 11:00 uur krijgen
     @Test
     public void checkBeschikbaarheidTijd(){
+        Data.allAppointments.clear();
+        Data.firstAppointments.clear();
         setup();
 
         afsprakenController.doctorSelected = doctor;
         afsprakenController.daySelected = afsprakenController.firstDoctorWorkingDays().get(2);
-        afsprakenController.timeSelected = afsprakenController.firstDoctorWorkingTimes().get(2);
+        afsprakenController.timeSelected = Data.doctors.get(0).getWorkingTimes(2).get(2);
         afsprakenController.specializationSelected = afsprakenController.firstDoctorSpecializations().get(1);
         afsprakenController.addButtonClicked();
 
-        assertEquals(appointments.get(0).getDoctor(), Data.allAppointments.get(2).getDoctor());
-        assertEquals(appointments.get(0).getDay(), Data.allAppointments.get(2).getDay());
-        assertEquals(appointments.get(0).getTime(), Data.allAppointments.get(2).getTime());
-        assertEquals(appointments.get(0).getSpecialization(), Data.allAppointments.get(2).getSpecialization());
+        assertEquals("11:00", Data.allAppointments.get(2).getTime());
     }
 
+    //Deze test kijkt of de functie checkDoctorSpecialization op de juiste manier werkt
     @Test
-    public void checkSpecialicatieChecker(){
+    public void checkSpecialisatieChecker(){
         Data.allAppointments.clear();
         afsprakenController.doctorSelected = doctor;
         afsprakenController.specializationSelected = afsprakenController.secondDoctorSpecializations().get(1);
