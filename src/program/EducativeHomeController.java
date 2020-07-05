@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,13 +32,12 @@ public class EducativeHomeController {
         window.show();
     }
     public void toSchrijven(ActionEvent event) throws IOException {
-        Parent tohome  = FXMLLoader.load(getClass().getResource("Schrijven.fxml"));
-        Scene homeScene = new Scene(tohome);
-
-        //pakt stage informatie
+        SchrijvenController controller = SchrijvenController.getInstance();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Schrijven.fxml"));
+        loader.setController(controller);
+        Parent root = loader.load();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(homeScene);
-        window.show();
+        window.setScene(new Scene(root, 800, 600));
     }
     public void ToReken(ActionEvent event) throws IOException{
         Parent toReken = FXMLLoader.load(getClass().getResource("RekenenHome.fxml"));

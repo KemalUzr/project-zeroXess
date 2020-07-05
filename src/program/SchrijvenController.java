@@ -38,7 +38,7 @@ public class SchrijvenController {
     // als er al een instance is dan is 'instance == null' false, waardoor hij de zelfde  'return instance' geven.
     // Als er geen instance is dus 'instance == nul' is true, dan kun je maar als het ware 1 object aanmaken.
     private SchrijvenController(){
-
+        //System.out.println("hoi");
     }
 
     // ik heb dit weggehaald: static SchrijvenController obj = new SchrijvenController();
@@ -49,6 +49,7 @@ public class SchrijvenController {
         return instance;
        // dit ook: return obj;
     }
+
     public int teller = 2; //
     public int count = 0;
     //Speelt de mp3 file die is geselecteerd
