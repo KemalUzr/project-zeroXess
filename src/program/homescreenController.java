@@ -38,16 +38,20 @@ public class homescreenController implements Initializable {
         Time.setCellValueFactory(new PropertyValueFactory<Appointment, String>("time"));
         Specialization.setCellValueFactory(new PropertyValueFactory<Appointment, String>("specialization"));
 
-        setData();
+        //setData();
         Tview.setItems(Data.firstAppointments);
     }
 
     public void setStartingData(){
-        Data.allAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
-        Data.firstAppointments.add(new Appointment(new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()), afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
+        Data.allAppointments.add(new Appointment(
+                new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()),
+                afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
+        Data.firstAppointments.add(new Appointment(
+                new Doctor("Dr. Kees de Beer", afsprakenController.firstDoctorWorkingDays(), afsprakenController.firstDoctorWorkingTimesPerDay(), afsprakenController.firstDoctorSpecializations()),
+                afsprakenController.firstDoctorWorkingDays().get(2), afsprakenController.firstDoctorWorkingTimes().get(2), new Specialization("General")));
     }
 
-    public void setData(){
+    /*public void updateFirstAppointment(){
         for (int i = 0; i < Data.allAppointments.size(); i++) {
             for (int j = 0; j < Data.firstAppointments.size(); j++) {
                 if(Data.allAppointments.get(i).getDayAsInt(Data.allAppointments.get(i).getDay()) < Data.firstAppointments.get(j).getDayAsInt(Data.firstAppointments.get(j).getDay())){
@@ -59,7 +63,7 @@ public class homescreenController implements Initializable {
                 }
             }
         }
-    }
+    }*/
 
     public void terugLogin(ActionEvent event) throws IOException {
         Parent showLogin = FXMLLoader.load(getClass().getResource("inlogScherm.fxml"));
