@@ -47,21 +47,28 @@ public class OefenRekenController {
                 }
             }
         }
-        // checkt of het rekenen is
-        if (type.equals("Rekenen")) {
-            if (count < Afname.opdrachten.size()) {
-                // haalt de volgende getallen uit de array
-                Input opdracht1 = Afname.opdrachten.get(count);
-                Getal1.setText("" + ((RekenInput) opdracht1).getGetal1());
-                Getal2.setText("" + ((RekenInput) opdracht1).getGetal2());
+        SetNextQuestion();
+    }
 
-                count++;
-            } else {
-                Score.setText("Aantalgoed = " + BerekenScore());
+    public void SetNextQuestion(){
+            if (type.equals("Rekenen")) {
+                if (count < Afname.opdrachten.size()) {
+                    // haalt de volgende getallen uit de array
+                    Input opdracht1 = Afname.opdrachten.get(count);
+                    Getal1.setText("" + ((RekenInput) opdracht1).getGetal1());
+                    Getal2.setText("" + ((RekenInput) opdracht1).getGetal2());
 
+                    count++;
+                } else {
+                    Score.setText("Aantalgoed = " + BerekenScore());
+
+                }
             }
         }
-    }
+
+        // checkt of het rekenen is
+
+
 
 
     public void StartButtonOefenToets(ActionEvent event) throws IOException {
