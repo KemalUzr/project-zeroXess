@@ -32,8 +32,8 @@ public class RekenenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-Getal1.setText("Klick op ");
-Getal2.setText("Start");
+        Getal1.setText("Klick op ");
+        Getal2.setText("Start");
     }
 
     int count = 0;
@@ -55,21 +55,28 @@ Getal2.setText("Start");
                 }
             }
         }
-        // checkt of het rekenen is
-        if (type.equals("Rekenen")) {
-         if (count < Afname.opdrachten.size()){
-            // haalt de volgende getallen uit de array
-            program.Input input1 = Afname.opdrachten.get(count);
-            Getal1.setText("" + ((RekenInput) input1).getGetal1());
-            Getal2.setText("" + ((RekenInput) input1).getGetal2());
-
-            count++;
-         }else {
-             Cijfer.setText("Je Cijfer is " +  BerekenScore());
-         }
-        }
+        SetNextQestion();
     }
-// start de toets
+
+    public void SetNextQestion(){
+
+        // checkt of het rekenen is
+            if (count < Afname.opdrachten.size()) {
+                // haalt de volgende getallen uit de array
+                program.Input input1 = Afname.opdrachten.get(count);
+                Getal1.setText("" + ((RekenInput) input1).getGetal1());
+                Getal2.setText("" + ((RekenInput) input1).getGetal2());
+
+                count++;
+            } else {
+                Cijfer.setText("Je Cijfer is " + BerekenScore());
+            }
+        }
+
+
+
+
+    // start de toets
     public void StartButton(ActionEvent event) {
         StartToets("Rekenen");
         program.Input input = Afname.opdrachten.get(count);
@@ -77,7 +84,6 @@ Getal2.setText("Start");
         Getal2.setText("" + ((RekenInput) input).getGetal2());
         count++;
     }
-
 
 
     //Gaat naar RekenenHome Ovezicht
@@ -90,7 +96,6 @@ Getal2.setText("Start");
         window.setScene(homeRScene);
         window.show();
     }
-
 
 
 }
