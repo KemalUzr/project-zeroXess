@@ -12,6 +12,7 @@ public class Appointment {
         this.specialization = new SimpleStringProperty(specialization.getName());
     }
 
+    //Functie om de integer van een bepaalde dag te krijgen om zo volgorde van dag te kunnen bepalen.
     public int getDayAsInt(String day){
         int dayNumber = 0;
         switch(day){
@@ -40,6 +41,7 @@ public class Appointment {
         return dayNumber;
     }
 
+    //Functie om de integer van een bepaalde tijd te krijgen om zo volgorde van tijd te kunnen bepalen.
     public int getTimeAsInt(String time){
         int timeNumber = 0;
         switch(time){

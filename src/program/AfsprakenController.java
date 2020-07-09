@@ -61,6 +61,7 @@ public class AfsprakenController implements Initializable{
 
     }
 
+    //Terug naar BeschikbaarhedenController
     public void terug(ActionEvent event) throws IOException {
         Parent showTerug = FXMLLoader.load(getClass().getResource("Beschikbaarheden.fxml"));
         Scene showHomeScene = new Scene(showTerug);
@@ -81,16 +82,12 @@ public class AfsprakenController implements Initializable{
         appointmentSelected.setSpecialization(editCell.getNewValue().toString());
     }
 
+    //Functie voor het toevoegen van afspraken
     public void addButtonClicked(){
 
         if(checkDoctorSpecialization()) {
-            /*Appointment appointment = new Appointment(Data.doctors.get(getRightDoctor()),
-                    daySelection.getValue(),
-                    timeSelection.getValue(),
-                    specializations.get(getRightSpecialization()));*/
             Appointment appointment = new Appointment(doctorSelected, daySelected, timeSelected, specializationSelected);
             Data.doctors.get(getRightDoctor()).getWorkingTimes(Data.doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelected)).remove(timeSelected);
-            //timeSelection.getItems().clear();
             Data.allAppointments.add(appointment);
             updateFirstAppointment();
         } else {
@@ -98,6 +95,7 @@ public class AfsprakenController implements Initializable{
         }
     }
 
+    //Functie om de gekozen dokter te krijgen
     public void selectedDoctor(){
         for (int i = 0; i < Data.doctors.size(); i++) {
             if (doctorSelection.getValue().contains(Data.doctors.get(i).getDoctorName())) {
@@ -106,23 +104,26 @@ public class AfsprakenController implements Initializable{
         }
     }
 
+    //Functie om de gekozen dag te krijgen
     public void selectedDay(){
         daySelected = daySelection.getValue();
     }
 
+    //Functie om de gekozen tijd te krijgen
     public void selectedTime(){
         timeSelected = timeSelection.getValue();
     }
 
+    //Functie om de gekozen specialisatie te krijgen
     public void selectedSpecialization(){
         for (int i = 0; i < specializations.size(); i++) {
             if (specializationSelection.getValue().contains(specializations.get(i).getName())) {
                 specializationSelected = specializations.get(i);
             }
         }
-
     }
 
+    //Functie van observer pattern, zorgt ervoor dat firstAppointment altijd de eerstkomende afspraak heeft
     public void updateFirstAppointment(){
         for (int i = 0; i < Data.allAppointments.size(); i++) {
             for (int j = 0; j < Data.firstAppointments.size(); j++) {
@@ -137,6 +138,7 @@ public class AfsprakenController implements Initializable{
         }
     }
 
+    //Controleert of de gekozen dokter de gekozen specialisatie bevat
     public boolean checkDoctorSpecialization(){
         for (int i = 0; i < Data.doctors.get(getRightDoctor()).getSpecialization().size(); i++) {
             if (doctorSelected.getSpecialization().get(i).getName().equals(specializationSelected.getName())){
@@ -146,6 +148,7 @@ public class AfsprakenController implements Initializable{
         return false;
     }
 
+    //Zorgt ervoor dat de integer van de gekozen dokter gegeven wordt.
     public int getRightDoctor() {
         for (int i = 0; i < Data.doctors.size(); i++) {
             if (doctorSelected.equals(Data.doctors.get(i).getDoctorName())) {
@@ -155,15 +158,7 @@ public class AfsprakenController implements Initializable{
         return 0;
     }
 
-    /*public int getRightSpecialization(){
-        for (int i = 0; i < specializations.size(); i++) {
-            if (specializationSelected.equals(specializations.get(i).getName())) {
-                return i;
-            }
-        }
-        return 0;
-    }*/
-
+    //Functie voor wanneer er op de delete knop gedrukt wordt
     public void deleteButtonClicked(){
         ObservableList<Appointment> appointmentSelected;
         appointmentSelected = tableView.getSelectionModel().getSelectedItems();
@@ -171,16 +166,16 @@ public class AfsprakenController implements Initializable{
         Data.firstAppointments.clear();
         Data.firstAppointments.add(tableView.getItems().get(0));
         updateFirstAppointment();
-        //Data.doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).add(doctors.get(getRightDoctor()).getWorkingTimes(doctors.get(getRightDoctor()).getWorkingDays().indexOf(daySelection.getValue())).size(), appointmentSelected.get(1).getTime());
     }
 
+    //Zorgt ervoor dat de hardcoded tijd al uit de ChoiceBoxes gehaald wordt
     public void removeInitialTime(){
         for (int i = 0; i < Data.allAppointments.size(); i++) {
             Data.doctors.get(1).getWorkingTimes(Data.doctors.get(1).getWorkingDays().indexOf(Data.allAppointments.get(i).getDay())).remove(Data.allAppointments.get(i).getTime());
         }
     }
 
-    //De komende drie functies zijn voor het initialiseren van de choiceboxes.
+    //Zorgt voor de keuzes in de doctorSelection Choicebox
     public void setDoctorChoicebox(){
         if(Data.doctors.isEmpty()){
             Data.doctors.add(new Doctor("Dr. Piet de Slang", firstDoctorWorkingDays(), firstDoctorWorkingTimesPerDay(), firstDoctorSpecializations()));
@@ -193,13 +188,13 @@ public class AfsprakenController implements Initializable{
         setDayChoicebox();
     }
 
+    //Zorgt voor de keuzes in de daySelection Choicebox
     public void setDayChoicebox(){
         doctorSelection.getSelectionModel()
                 .selectedItemProperty()
                 .addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-
                         daySelection.getItems().clear();
                         selectedDoctor();
                         ObservableList<String> availableDays = FXCollections.observableArrayList();
@@ -211,6 +206,7 @@ public class AfsprakenController implements Initializable{
                         setTimeChoicebox();
     }
 
+    //Zorgt voor de keuzes in de timeSelection Choicebox
     public void setTimeChoicebox(){
         daySelection.getSelectionModel()
                 .selectedItemProperty()
@@ -236,6 +232,7 @@ public class AfsprakenController implements Initializable{
                 });
     }
 
+    //Zorgt voor de keuzes in de specializationSelection Choicebox
     public void setSpecializationChoicebox(){
         specializations.add(new Specialization("Skin"));
         specializations.add(new Specialization("General"));
